@@ -1,0 +1,15 @@
+{
+	"name": "ktravel/respati",
+	"require": {
+		"php": ">=5.3.7",
+		"illuminate/database": "5.1.16"
+	},
+	"autoload": {
+		"classmap": [
+			"application/models"
+		]
+	},
+	"require-dev": {
+		"mikey179/vfsstream": "1.1.*"
+	}
+}
