@@ -55,6 +55,7 @@ class Employee extends CI_Controller {
 			$data           = new PartyModel();
 			$data->nama_lengkap = $this->input->post('nama_lengkap');
 			$data->id_user      = $this->input->post('id_user');
+			$data->nik	        = $this->input->post('id_user');
 			$data->email 		= $this->input->post('email');
 			$data->no_hp 	    = $this->input->post('no_hp');
 			$data->nohp_atasan 	= $this->input->post('nohp_atasan');
@@ -77,6 +78,7 @@ class Employee extends CI_Controller {
 			$data           	= PartyModel::where('id', $id)->first();
 			$data->nama_lengkap = $this->input->post('nama_lengkap');
 			$data->id_user      = $this->input->post('id_user');
+			$data->nik          = $this->input->post('id_user');
 			$data->email 		= $this->input->post('email');
 			$data->no_hp 	    = $this->input->post('no_hp');
 			$data->nohp_atasan 	= $this->input->post('nohp_atasan');
