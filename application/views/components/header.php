@@ -19,7 +19,7 @@
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <li class="dropdown user user-menu open">
+                <li class="dropdown user user-menu">
                     <a href="#!" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                         <span>
                             <strong><?= $this->session->name ?></strong>, <?= $this->session->identity ?> <i class="fa fa-chevron-down dropdown--user"></i>

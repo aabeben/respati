@@ -99,6 +99,7 @@ class ComposerStaticInitbe2b28f6566bbdf8b61cae712d16f97f
         'FamilyModel' => __DIR__ . '/../..' . '/application/models/FamilyModel.php',
         'FlightModel' => __DIR__ . '/../..' . '/application/models/FlightModel.php',
         'PartyModel' => __DIR__ . '/../..' . '/application/models/PartyModel.php',
+        'RouteModel' => __DIR__ . '/../..' . '/application/models/RouteModel.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

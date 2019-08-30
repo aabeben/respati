@@ -22,8 +22,8 @@
             <li class="treeview <?php if($this->uri->uri_string() == 'employee' || $this->uri->uri_string() == 'family') { print 'active'; } ?>">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>Pihak</span>
-                    <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
 
@@ -41,9 +41,14 @@
                     </li>
                 </ul>
             </li>
-            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase') { print 'class="active"'; } ?>">
+            <li class="singleview <?php if ($this->uri->uri_string() == 'flight') { print 'active'; } ?>">
                 <a href="<?= site_url('flight') ?>">
                     <i class="fa fa-plane"></i> <span>Maskapai</span>
+                </a>
+            </li>
+            <li class="singleview <?php if ($this->uri->uri_string() == 'route') { print 'active'; } ?>">
+                <a href="<?= site_url('route') ?>">
+                    <i class="fa fa-map"></i> <span>Rute Perjalanan</span>
                 </a>
             </li>
 
