@@ -30,6 +30,7 @@ class AuthenticationLibraries {
             
             if ($user !== NULL) {
 				$this->ci->session->set_userdata(array(
+					'unique'    => $user[0]->id,
 					'id'        => $user[0]->id_user,
                     'name'      => $user[0]->nama_lengkap,
                     'type'      => $user[0]->type,
@@ -50,6 +51,7 @@ class AuthenticationLibraries {
     function revoke() {
         $this->ci->session->set_userdata(
             array(
+                'unique'    => '', 
                 'id'        => '', 
                 'name'      => '', 
                 'type'      => '', 

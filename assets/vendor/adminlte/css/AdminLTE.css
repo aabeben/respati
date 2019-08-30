@@ -5665,3 +5665,10 @@ table tr td small {
   position: relative; top: -3.5px; margin-left: 2.5px;
   font-size: 10px;
 }
+
+.box-header.rsvp {
+  margin-bottom: -25px;
+}
+.box-header.rsvp-block {
+  margin-top: -22px;
+}

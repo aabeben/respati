@@ -53,13 +53,13 @@
             </li>
 
             <li class="header">Pemesanan Tiket</li>
-            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase') { print 'class="active"'; } ?>">
+            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase') { print 'active'; } ?>">
                 <a href="#">
                     <i class="fa fa-ticket"></i> <span>Homebase</span>
                 </a>
             </li>
-            <li class="singleview <?php if($this->uri->uri_string() == 'reservation/reimbursement') { print 'class="active"'; } ?>">
-                <a href="#">
+            <li class="singleview <?php if($this->uri->uri_string() == 'reservation/reimbursement') { print 'active'; } ?>">
+                <a href="<?= site_url('reservation/reimbursement') ?>">
                     <i class="fa fa-ticket"></i> <span>Reimbursement</span>
                 </a>
             </li>

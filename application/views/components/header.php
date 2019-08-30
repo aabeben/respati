@@ -29,7 +29,7 @@
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#">Profile Saya</a>
-                            <a href="#">Keluar</a>
+                            <a href="<?= site_url('authentication/revoke') ?>">Keluar</a>
                         </li>
                     </ul>
                 </li>
