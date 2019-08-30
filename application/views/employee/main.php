@@ -14,11 +14,11 @@
                 </div>
 
                 <div class="box-body">
-                    <?php if ($this->session->flashdata('status') == 'updated' || $this->session->flashdata('status') == 'stored') { ?>
+                    <?php if ($this->session->flashdata('state') == 'updated' || $this->session->flashdata('state') == 'stored') { ?>
                         <div class="alert alert-success">
                             <i class="fa fa-check-square-o"></i> Data telah tersimpan.
                         </div>
-                    <?php } else if ($this->session->flashdata('status') == 'destroyed') { ?>
+                    <?php } else if ($this->session->flashdata('state') == 'destroyed') { ?>
                         <div class="alert alert-danger">
                         <i class="fa fa-check-square-o"></i> Data telah terhapus.
                         </div>
