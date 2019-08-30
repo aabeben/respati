@@ -356,4 +356,6 @@ $(function () {
 
 $(function () {
     $('.table-data').DataTable()
+    $('.form-search').select2();
 })
+

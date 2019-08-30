@@ -7,7 +7,11 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h3 class="box-title">
                                 <i class="fa fa-user"></i>
-                                Update Data <strong><?= $party->nama_lengkap ?></strong>
+                                <?php if ($entity == 'create') { ?>
+                                    Tambah Data
+                                <?php } else { ?>
+                                    Update Data <strong><?= $party->nama_lengkap ?></strong>
+                                <?php } ?>
                             </h3>
                             
                             <a href="<?= site_url('employee') ?>" class="btn btn-warning btn-lg">

@@ -5,7 +5,7 @@ use \Illuminate\Database\Eloquent\Model as Eloquent;
 class FamilyModel extends Eloquent {
     protected $table = 'family';
 
-    public function parties() {
-        return $this->belongsTo('PartyModel');
+    public function employee() {
+        return $this->hasOne('PartyModel', 'nik', 'nik');
     }
 }

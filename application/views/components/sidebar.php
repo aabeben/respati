@@ -29,13 +29,13 @@
 
                 <ul class="treeview-menu">
                     <li <?php if($this->uri->uri_string() == 'employee') { print 'class="active"'; } ?>>
-                        <a href="#!">
+                        <a href="<?= site_url('employee') ?>">
                             <i class="fa fa-circle-o"></i> Karyawan
                         </a>
                     </li>
 
                     <li <?php if($this->uri->uri_string() == 'family') { print 'class="active"'; } ?>>
-                        <a href="#!">
+                        <a href="<?= site_url('family') ?>">
                             <i class="fa fa-circle-o"></i> Keluarga
                         </a>
                     </li>
