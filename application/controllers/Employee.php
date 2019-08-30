@@ -32,6 +32,11 @@ class Employee extends CI_Controller {
 				$data['party']->email    	 = '';
 				$data['party']->no_hp 	     = '';
 				$data['party']->nohp_atasan  = '';
+				$data['party']->email_atasan = '';
+				$data['party']->jabatan      = '';
+				$data['party']->departemen   = '';
+				$data['party']->lokasi_kerja = '';
+				$data['party']->homebase 	 = '';
 
 				$data['entity'] = 'create'; 
 			} else {
@@ -52,7 +57,12 @@ class Employee extends CI_Controller {
 			$data->id_user      = $this->input->post('id_user');
 			$data->email 		= $this->input->post('email');
 			$data->no_hp 	    = $this->input->post('no_hp');
-			$data->nohp_atasan 	= $this->input->post('no_hp');
+			$data->nohp_atasan 	= $this->input->post('nohp_atasan');
+			$data->email_atasan = $this->input->post('email_atasan');
+			$data->jabatan	    = $this->input->post('jabatan');
+			$data->departemen	= $this->input->post('departemen');
+			$data->lokasi_kerja	= $this->input->post('lokasi_kerja');
+			$data->homebase  	= $this->input->post('homebase');
 			$data->save();
 
 			$this->session->set_flashdata('state', 'stored');
@@ -69,6 +79,12 @@ class Employee extends CI_Controller {
 			$data->id_user      = $this->input->post('id_user');
 			$data->email 		= $this->input->post('email');
 			$data->no_hp 	    = $this->input->post('no_hp');
+			$data->nohp_atasan 	= $this->input->post('nohp_atasan');
+			$data->email_atasan = $this->input->post('email_atasan');
+			$data->jabatan	    = $this->input->post('jabatan');
+			$data->departemen	= $this->input->post('departemen');
+			$data->lokasi_kerja	= $this->input->post('lokasi_kerja');
+			$data->homebase  	= $this->input->post('homebase');
 			$data->save();
 			
 			$this->session->set_flashdata('state', 'updated');

@@ -55,11 +55,52 @@
                                     <input type="text" name="no_hp" value="<?= $party->no_hp ?>" class="form-control">
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label>Nomor Handphone Atasan</label>
                                     <input type="text" name="nohp_atasan" value="<?= $party->nohp_atasan ?>" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Email Atasan</label>
+                                    <input type="email" name="email_atasan" value="<?= $party->email_atasan ?>" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Jabatan</label>
+                                    <input type="text" name="jabatan" value="<?= $party->jabatan ?>" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <input type="text" name="departemen" value="<?= $party->departemen ?>" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Lokasi Kerja</label>
+                                    <input type="text" name="lokasi_kerja" value="<?= $party->lokasi_kerja ?>" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Homebase</label>
+                                    <input type="text" name="homebase" value="<?= $party->homebase ?>" class="form-control">
                                 </div>
                             </div>
                         </div>

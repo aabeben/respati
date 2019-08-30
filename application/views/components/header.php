@@ -31,7 +31,7 @@
 
                             <p>
                                 <?= $this->session->name ?>
-                                <small><?= ucfirst($this->session->type) ?></small>
+                                <small><?= ucfirst($this->session->type) ?>, <?= $this->session->identity ?></small>
                             </p>
                         </li>
 
