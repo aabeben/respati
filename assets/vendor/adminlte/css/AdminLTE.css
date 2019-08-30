@@ -962,6 +962,7 @@ a:focus {
 }
 .dropdown-menu > li > a {
   color: #777;
+  padding: 10px 20px; 
 }
 .dropdown-menu > li > a > .glyphicon,
 .dropdown-menu > li > a > .fa,
@@ -5640,9 +5641,6 @@ hr {
     display: none;
   }
 
-  .skin-red-light .main-header .navbar-custom-menu {
-    background-color: transparent !important;
-}
 }
 
 input:focus {
@@ -5662,4 +5660,8 @@ table tr td small {
 
 .lowercase {
   text-transform: lowercase;
+}
+.dropdown--user {
+  position: relative; top: -3.5px; margin-left: 2.5px;
+  font-size: 10px;
 }

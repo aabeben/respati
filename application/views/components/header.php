@@ -19,31 +19,17 @@
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= base_url() ?>assets/vendor/adminlte/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs"><?= $this->session->name ?></span>
+                <li class="dropdown user user-menu open">
+                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        <span>
+                            <strong><?= $this->session->name ?></strong>, <?= $this->session->identity ?> <i class="fa fa-chevron-down dropdown--user"></i>
+                        </span>
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li class="user-header">
-                            <img src="<?= base_url() ?>assets/vendor/adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                            <p>
-                                <?= $this->session->name ?>
-                                <small><?= ucfirst($this->session->type) ?>, <?= $this->session->identity ?></small>
-                            </p>
-                        </li>
-
-
-                        <li class="user-footer">
-                            <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile Saya</a>
-                            </div>
-
-                            <div class="pull-right">
-                                <a href="<?= site_url('authentication/revoke') ?>" class="btn btn-default btn-flat">Sign out</a>
-                            </div>
+                        <li>
+                            <a href="/essence/party/officer/read/1">Edit Profile</a>
+                            <a href="/essence/authentication/revoke">Signout</a>
                         </li>
                     </ul>
                 </li>
