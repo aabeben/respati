@@ -28,8 +28,8 @@
 
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/essence/party/officer/read/1">Edit Profile</a>
-                            <a href="/essence/authentication/revoke">Signout</a>
+                            <a href="#">Profile Saya</a>
+                            <a href="#">Keluar</a>
                         </li>
                     </ul>
                 </li>
