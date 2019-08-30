@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AuthenticationModel' => $baseDir . '/application/models/AuthenticationModel.php',
     'FamilyModel' => $baseDir . '/application/models/FamilyModel.php',
+    'FlightModel' => $baseDir . '/application/models/FlightModel.php',
     'PartyModel' => $baseDir . '/application/models/PartyModel.php',
 );

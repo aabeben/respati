@@ -95,7 +95,9 @@ class ComposerStaticInitbe2b28f6566bbdf8b61cae712d16f97f
     );
 
     public static $classMap = array (
+        'AuthenticationModel' => __DIR__ . '/../..' . '/application/models/AuthenticationModel.php',
         'FamilyModel' => __DIR__ . '/../..' . '/application/models/FamilyModel.php',
+        'FlightModel' => __DIR__ . '/../..' . '/application/models/FlightModel.php',
         'PartyModel' => __DIR__ . '/../..' . '/application/models/PartyModel.php',
     );
 

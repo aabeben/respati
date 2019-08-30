@@ -28,22 +28,27 @@
                 </a>
 
                 <ul class="treeview-menu">
-                    <li <?php if($this->uri->uri_string() == 'employee') { print 'class="active"'; } ?>>
+                    <li <?php if ($this->uri->uri_string() == 'employee') { print 'class="active"'; } ?>>
                         <a href="<?= site_url('employee') ?>">
                             <i class="fa fa-circle-o"></i> Karyawan
                         </a>
                     </li>
 
-                    <li <?php if($this->uri->uri_string() == 'family') { print 'class="active"'; } ?>>
+                    <li <?php if ($this->uri->uri_string() == 'family') { print 'class="active"'; } ?>>
                         <a href="<?= site_url('family') ?>">
                             <i class="fa fa-circle-o"></i> Keluarga
                         </a>
                     </li>
                 </ul>
             </li>
+            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase') { print 'class="active"'; } ?>">
+                <a href="<?= site_url('flight') ?>">
+                    <i class="fa fa-plane"></i> <span>Maskapai</span>
+                </a>
+            </li>
 
             <li class="header">Pemesanan Tiket</li>
-            <li class="singleview <?php if($this->uri->uri_string() == 'reservation/homebase') { print 'class="active"'; } ?>">
+            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase') { print 'class="active"'; } ?>">
                 <a href="#">
                     <i class="fa fa-ticket"></i> <span>Homebase</span>
                 </a>
