@@ -678,14 +678,11 @@
             $('#information-return').hide()
             $('#date-return').hide()
             $('#return-wrapper').hide()
-
-            $('#tgl_pulang').val('')
         } else {
             $('#information-return').show()
             $('#date-return').show()
             $('#return-wrapper').show()
 
-            $('#tgl_pulang').val('<?= date('m/d/Y') ?>')
 
         }
     }
