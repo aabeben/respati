@@ -32,7 +32,9 @@
 
                     <ul class="dropdown-menu">
                         <li>
+                            <?php if ($this->session->type === 'employee') { ?>
                             <a href="<?= site_url('employee/form/' . $this->session->unique ) ?>">Profil Saya</a>
+                            <?php } ?>
                             <a href="<?= site_url('authentication/revoke') ?>">Keluar</a>
                         </li>
                     </ul>

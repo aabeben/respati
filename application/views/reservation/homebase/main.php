@@ -13,9 +13,11 @@
                         $record_num = $this->uri->segment($last_segment);
                         if ($record_num != 'homebase_history') { 
                     ?>
+                    <?php if ($this->session->type === 'employee') { ?>
                     <a href="#!" data-toggle="modal" data-target="#modal-reimbursement" class="btn btn-danger btn-lg">
                         <i class="fa fa-plus"></i> Tambah Data Baru
                     </a>
+                    <?php } ?>
                     <?php } ?>
                 </div>
 
