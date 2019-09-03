@@ -294,7 +294,7 @@
                                                                     <div class="panel-body">
                                                                         <div class="form-group">
                                                                             <label>Tanggal Keberangkatan</label>
-                                                                            <input type="text" class="form-control form-date" value="<?= date('d-m-Y') ?>" id="tgl_berangkat" name="tgl_berangkat">
+                                                                            <input type="text" class="form-control form-date" value="<?= date('m/d/Y') ?>" id="tgl_berangkat" name="tgl_berangkat">
                                                                         </div>
 
                                                                         <div class="form-group">
@@ -580,7 +580,7 @@
             $('#date-return').show()
             $('#return-wrapper').show()
 
-            $('#tgl_pulang').val('<?= date('d-m-Y') ?>')
+            $('#tgl_pulang').val('<?= date('m/d/Y') ?>')
 
         }
     }
