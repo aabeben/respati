@@ -2,24 +2,47 @@
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="box">
-                <div class="box-header">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <h3 class="box-title">
-                                <i class="fa fa-user"></i>
-                                <?php if ($entity == 'create') { ?>
-                                    Tambah Data
-                                <?php } else { ?>
-                                    Update Data <strong><?= $party->nama_lengkap ?></strong>
-                                <?php } ?>
-                            </h3>
-                            
-                            <a href="<?= site_url('employee') ?>" class="btn btn-warning btn-lg">
-                                <i class="fa fa-arrow-left"></i> Kembali
-                            </a>
+                <?php if ($this->session->type === 'administrator') { ?>
+                    <div class="box-header">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <h3 class="box-title">
+                                    <i class="fa fa-user"></i>
+                                    <?php if ($entity == 'create') { ?>
+                                        Tambah Data
+                                    <?php } else { ?>
+                                        Update Data <strong><?= $party->nama_lengkap ?></strong>
+                                    <?php } ?>
+                                </h3>
+                                
+                                <a href="<?= site_url('employee') ?>" class="btn btn-warning btn-lg">
+                                    <i class="fa fa-arrow-left"></i> Kembali
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <div class="box-header">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <h3 class="box-title">
+                                    <i class="fa fa-user"></i>
+                                    <strong>Profil</strong> Saya
+                                </h3>
+
+                                <?php if ($this->session->flashdata('state') == 'updated' || $this->session->flashdata('state') == 'stored') { ?>
+                                    <div class="alert alert-success">
+                                        <i class="fa fa-check-square-o"></i> Data telah tersimpan.
+                                    </div>
+                                <?php } else if ($this->session->flashdata('state') == 'destroyed') { ?>
+                                    <div class="alert alert-danger">
+                                    <i class="fa fa-check-square-o"></i> Data telah terhapus.
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
 
                 <div class="box-body">
                     <?php if ($entity == 'create') { ?>

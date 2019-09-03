@@ -22,13 +22,17 @@
                 <li class="dropdown user user-menu">
                     <a href="#!" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                         <span>
-                            <strong><?= $this->session->name ?></strong>, <?= $this->session->identity ?> <i class="fa fa-chevron-down dropdown--user"></i>
+                            <?php if ($this->session->type !== 'administrator') { ?>
+                                <strong><?= $this->session->name ?></strong>, <?= $this->session->identity ?> <i class="fa fa-chevron-down dropdown--user"></i>
+                            <?php } else { ?>
+                                <strong><?= $this->session->name ?></strong>, Administrator
+                            <?php } ?>
                         </span>
                     </a>
 
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Profile Saya</a>
+                            <a href="<?= site_url('employee/form/' . $this->session->unique ) ?>">Profil Saya</a>
                             <a href="<?= site_url('authentication/revoke') ?>">Keluar</a>
                         </li>
                     </ul>

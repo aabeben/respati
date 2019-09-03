@@ -12,7 +12,7 @@ class Employee extends CI_Controller {
 			redirect('authentication/signin');
 		} else {
 			$data['content'] ='employee/main'; 
-			$data['party'] 	 = PartyModel::with('family')->orderBy('id', 'desc')->take(100)->get();
+			$data['party'] 	 = PartyModel::with('family')->where('type', 'employee')->orderBy('id', 'desc')->take(100)->get();
 			
 			$this->load->view('components/layout', $data);
 		}
@@ -90,7 +90,11 @@ class Employee extends CI_Controller {
 			$data->save();
 			
 			$this->session->set_flashdata('state', 'updated');
-			redirect(site_url('employee'));
+
+			if ($this->session->type === 'administrator')
+				redirect(site_url('employee'));
+			else	
+			redirect(site_url('employee/form/' . $this->session->unique));
 		}
 	}
 

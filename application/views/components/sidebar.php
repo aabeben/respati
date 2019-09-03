@@ -12,6 +12,7 @@
         </div>
         
         <ul class="sidebar-menu" data-widget="tree">
+        <?php if ($this->session->type === 'administrator') { ?>
             <li class="singleview <?php if($this->uri->uri_string() == 'dashboard') { print 'class="active"'; } ?>">
                 <a href="#">
                     <i class="fa fa-pie-chart"></i> <span>Dasbor</span>
@@ -51,10 +52,12 @@
                     <i class="fa fa-map"></i> <span>Rute Perjalanan</span>
                 </a>
             </li>
+        <?php } ?>
 
+        <?php if ($this->session->type !== 'administrator') { ?>
             <li class="header">Pemesanan Tiket</li>
             <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase') { print 'active'; } ?>">
-                <a href="#">
+                <a href="<?= site_url('reservation/homebase') ?>">
                     <i class="fa fa-ticket"></i> <span>Homebase</span>
                 </a>
             </li>
@@ -63,6 +66,31 @@
                     <i class="fa fa-ticket"></i> <span>Reimbursement</span>
                 </a>
             </li>
+
+            <li class="header">Histori Pemesanan</li>
+            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase_history') { print 'active'; } ?>">
+                <a href="<?= site_url('reservation/homebase_history') ?>">
+                    <i class="fa fa-ticket"></i> <span>Homebase</span>
+                </a>
+            </li>
+            <li class="singleview <?php if($this->uri->uri_string() == 'reservation/reimbursement_history') { print 'active'; } ?>">
+                <a href="<?= site_url('reservation/reimbursement_history') ?>">
+                    <i class="fa fa-ticket"></i> <span>Reimbursement</span>
+                </a>
+            </li>
+        <?php } else { ?>
+            <li class="header">Management</li>
+            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase') { print 'active'; } ?>">
+                <a href="<?= site_url('reservation/homebase') ?>">
+                    <i class="fa fa-ticket"></i> <span>Homebase</span>
+                </a>
+            </li>
+            <li class="singleview <?php if($this->uri->uri_string() == 'reservation/reimbursement') { print 'active'; } ?>">
+                <a href="<?= site_url('reservation/reimbursement') ?>">
+                    <i class="fa fa-ticket"></i> <span>Reimbursement</span>
+                </a>
+            </li>
+        <?php } ?>
         </ul>
     </section>
 </aside>

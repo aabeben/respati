@@ -5,12 +5,17 @@
                 <div class="box-header rsvp">
                     <h3 class="box-title">
                         <i class="fa fa-ticket"></i>
-                        Reimbursement
+                        Reimbursement 
                     </h3>
-                    
+                    <?php 
+                        $last_segment = $this->uri->total_segments();
+                        $record_num = $this->uri->segment($last_segment);
+                        if ($record_num != 'reimbursement_history') { 
+                    ?>
                     <a href="#!" data-toggle="modal" data-target="#modal-reimbursement" class="btn btn-danger btn-lg">
                         <i class="fa fa-plus"></i> Tambah Data Baru
                     </a>
+                    <?php } ?>
                 </div>
 
                     <?php if ($this->session->flashdata('state') == 'updated' || $this->session->flashdata('state') == 'stored') { ?>
@@ -39,6 +44,7 @@
                             </h4>
                         </div>
 
+                        <?php if ($this->session->type === 'employee') { ?>
                         <div class="box-body">
                             <table class="table table-bordered table-striped table-data">
                                 <thead>
@@ -68,20 +74,87 @@
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
                                                     <span class="label label-primary">Menunggu Approval</span>
+                                                <?php } else if ($data->st_approv == 'reject') { ?>
+                                                    <span class="label label-danger">Telah Direject</span>
                                                 <?php } else { ?>
                                                     <span class="label label-success">Sudah di Approve</span>
                                                 <?php } ?>
                                             </td>
                                             <td>
+                                            <?php if ($data->st_approv == 'false') { ?>
                                                 <a href="<?= site_url('reservation/destroy/' . $data->id) ?>" class="btn btn-warning btn-md" data-toggle="tooltip" title="Batalkan Permintaan Reimbursement">
                                                     <i class="fa fa-times"></i>
                                                 </a>
+                                            <?php } ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
+                        <?php } else { ?>
+                            <div class="box-body">
+                                <table class="table table-bordered table-striped table-data">
+                                    <thead>
+                                        <tr>
+                                            <th>Reservasi</th>
+                                            <th>Nama</th>
+                                            <th>Maskapai</th>
+                                            <th>Rute</th>
+                                            <th>Tanggal</th>
+                                            <th>Flight</th>
+                                            <th>Harga Tiket</th>
+                                            <th>Dokumen</th>
+                                            <th>Tgl Pengajuan</th>
+                                            <th>Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php foreach ($depart as $key => $data): ?>
+                                            <tr>
+                                                <td><?= $data->id; ?></td>
+                                                <td><strong><?= $data->nama; ?></strong> <small>NIK: <strong><?= $data->nik ?></strong></small></td>
+                                                <td><strong><?= $data->flightDepart->flight; ?></strong></td>
+                                                <td><strong><?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>) - <?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>)</strong></td>
+                                                <td><strong><?= $data->tgl_berangkat; ?>, <?= $data->waktu_berangkat; ?></strong></td>
+                                                <td><strong><?= $data->kode_flight; ?></strong></td>
+                                                <td><strong>Rp<?= number_format($data->harga); ?></strong></td>
+                                                <td>
+                                                    <?php if ($data->document === null || $data->document === '') { ?>
+                                                        <span class="text-danger">-</span>
+                                                    <?php } else { ?>
+                                                        <a href="<?= base_url() ?>/assets/storage/image/boarding/<?= $data->document ?>" target="_blank" class="text-success" style="color: #1d9b95;"><strong>Klik <i class="fa fa-picture-o"></i></strong></a>
+                                                    <?php } ?>
+                                                </td>
+                                                <td><?= $data->created_at ?></td>
+                                                <td>
+                                                    <?php if ($data->st_approv == 'false') { ?>
+                                                        <span class="label label-primary">Menunggu Approval</span>
+                                                    <?php } else if ($data->st_approv == 'reject') { ?>
+                                                        <span class="label label-danger">Telah Direject</span>
+                                                    <?php } else { ?>
+                                                        <span class="label label-success">Sudah di Approve</span>
+                                                    <?php } ?>
+                                                </td>
+
+                                                <td>
+                                                    <?php if ($data->st_approv == 'false') { ?>
+                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=true&back=reimbursement" class="btn btn-success text-white btn-md" style="color: white;" data-toggle="tooltip" title="Approve">
+                                                        <i class="fa fa-check"></i> Approve
+                                                    </a>
+                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=reject&back=reimbursement" class="btn btn-danger btn-md" data-toggle="tooltip" title="Reject">
+                                                        <i class="fa fa-times"></i> Reject
+                                                    </a>
+                                                    <?php } ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -94,6 +167,7 @@
                             </h4>
                         </div>
 
+                        <?php if ($this->session->type === 'employee') { ?>
                         <div class="box-body">
                             <table class="table table-bordered table-striped table-data">
                                 <thead>
@@ -123,20 +197,91 @@
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
                                                     <span class="label label-primary">Menunggu Approval</span>
+                                                <?php } else if ($data->st_approv == 'reject') { ?>
+                                                    <span class="label label-danger">Telah Direject</span>
                                                 <?php } else { ?>
-                                                    <span class="label label-primary">Sudah di Approve</span>
+                                                    <span class="label label-success">Sudah di Approve</span>
                                                 <?php } ?>
                                             </td>
                                             <td>
+
+                                            <?php if ($data->st_approv == 'false') { ?>
                                                 <a href="<?= site_url('reservation/destroy/' . $data->id) ?>" class="btn btn-warning btn-md" data-toggle="tooltip" title="Batalkan Permintaan Reimbursement">
                                                     <i class="fa fa-times"></i>
                                                 </a>
+                                            <?php } ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
+                        <?php } else { ?>
+                            <div class="box-body">
+                            <table class="table table-bordered table-striped table-data">
+                                <thead>
+                                    <tr>
+                                        <th>Reservasi</th>
+                                        <th>Nama</th>
+                                        <th>Maskapai</th>
+                                        <th>Rute</th>
+                                        <th>Tanggal Pulang</th>
+                                        <th>Kode Flight</th>
+                                        <th>Harga Tiket</th>
+                                        <th>Dokumen</th>
+                                        <th>Tgl Pengajuan</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php foreach ($return as $key => $data): ?>
+                                        <tr>
+                                            <td><?= $data->id; ?></td>
+                                            <td><strong><?= $data->nama; ?></strong> <small>NIK: <strong><?= $data->nik ?></strong></small></td>
+                                            <td><strong><?= $data->flightReturn->flight; ?></strong></td>
+                                            <td><strong><?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>) - <?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>)</strong></td>
+                                            <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_berangkat; ?></strong></td>
+                                            <td><strong><?= $data->kode_flight; ?></strong></td>
+                                            <td><strong>Rp<?= number_format($data->harga_pulang); ?></strong></td>
+                                            <td>
+                                                <?php if ($data->document === null || $data->document === '') { ?>
+                                                    <span class="text-danger">Tidak ada dokumen boarding pass.</span>
+                                                <?php } else { ?>
+                                                    <a href="<?= base_url() ?>/assets/storage/image/boarding/<?= $data->document ?>" target="_blank" class="text-success" style="color: #1d9b95;"><strong>Klik <i class="fa fa-picture-o"></i></strong></a>
+                                                <?php } ?>
+                                            </td>
+                                            <td><?= $data->created_at; ?></td>
+                                            <td>
+                                                <?php if ($data->st_approv == 'false') { ?>
+                                                    <span class="label label-primary">Menunggu Approval</span>
+                                                <?php } else if ($data->st_approv == 'reject') { ?>
+                                                    <span class="label label-danger">Telah Direject</span>
+                                                <?php } else { ?>
+                                                    <span class="label label-success">Sudah di Approve</span>
+                                                <?php } ?>
+                                            </td>
+                                            <td>
+                                                <?php if ($data->st_approv == 'false') { ?>
+                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=true&back=reimbursement" class="btn btn-success text-white btn-md" style="color: white;" data-toggle="tooltip" title="Approve">
+                                                        <i class="fa fa-check"></i> Approve
+                                                    </a>
+                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=reject&back=reimbursement" class="btn btn-danger btn-md" data-toggle="tooltip" title="Reject">
+                                                        <i class="fa fa-times"></i> Reject
+                                                    </a>
+                                                <?php } else if ($data->st_approv == 'reject') { ?>
+                                                    <?php if ($data->st_info != null || $data->st_info != '' || $data->st_info != 'false') { ?>
+                                                        Catatan: <?= $data->st_info ?>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php } ?>
                     </div>
                 </div>
 
