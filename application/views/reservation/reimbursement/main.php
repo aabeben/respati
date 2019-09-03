@@ -121,7 +121,7 @@
                                             <td><strong><?= $data->kode_flight; ?></strong></td>
                                             <td><strong>Rp<?= number_format($data->harga_pulang); ?></strong></td>
                                             <td>
-                                                <?php if ($data->st_approv == false) { ?>
+                                                <?php if ($data->st_approv == 'false') { ?>
                                                     <span class="label label-primary">Menunggu Approval</span>
                                                 <?php } else { ?>
                                                     <span class="label label-primary">Sudah di Approve</span>

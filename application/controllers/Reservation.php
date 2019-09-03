@@ -81,6 +81,7 @@ class Reservation extends CI_Controller {
 					$data->waktu_pulang = $this->input->post('waktu_pulang');
 					$data->kode_flight = $this->input->post('kode_flight');
 					$data->harga = $this->input->post('harga');
+					$data->metode_pemesanan = 'R';
 					$data->kode_flight_pulang = $this->input->post('kode_flight_pulang');
 					$data->harga_pulang = $this->input->post('harga_pulang');
 					$data->document = $file_name;
