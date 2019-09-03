@@ -35,6 +35,9 @@
                                 </div>
                             </div>
 
+                        </div>
+
+                        <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label>Anggota Keluarga Dari <span class="text-danger">*</span></label>
@@ -43,6 +46,17 @@
                                         <?php foreach ($employee as $key => $data): ?>
                                             <option value="<?= $data->nik ?>" <?php if ($data->nik == $family->nik) { print 'selected'; } ?>><?= $data->nama_lengkap ?> – <?= $data->nik ?></option>
                                         <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Hubungan <span class="text-danger">*</span></label>
+                                    <select name="relationship" class="form-control" required>
+                                        <option selected disabled>-- Pilih Hubungan --</option>
+                                        <option value="SPOUSE">Pasangan</option>
+                                        <option value="CHILD">Anak</option>
                                     </select>
                                 </div>
                             </div>

@@ -357,5 +357,35 @@ $(function () {
 $(function () {
     $('.table-data').DataTable()
     $('.form-search').select2();
-})
 
+    $('.form-date').datepicker({
+        startDate:"-7d",
+        autoclose: true,
+        minDate:0
+    })
+    .on('changeDate', function(event) {
+        var elementDate = event.target.id
+        
+        if (elementDate === 'tgl_berangkat') {
+            var selectedDate = new Date(event.date.valueOf());
+            var myMinDate = new Date(selectedDate.setMonth(selectedDate.getMonth()+3));
+            $('#tgl_pulang').datepicker('setEndDate', myMinDate);     
+        }
+    });
+
+    function centerModal() {
+        $(this).css('display', 'block');
+        var $dialog  = $(this).find(".modal-dialog"),
+        offset       = ($(window).height() - $dialog.height()) / 2,
+        bottomMargin = parseInt($dialog.css('marginBottom'), 10);
+
+        // Make sure you don't hide the top part of the modal w/ a negative margin if it's longer than the screen height, and keep the margin equal to the bottom margin of the modal
+        if(offset < bottomMargin) offset = bottomMargin;
+        $dialog.css("margin-top", offset);
+    }
+
+    $(document).on('show.bs.modal', '.modal', centerModal);
+    $(window).on("resize", function () {
+        $('.modal:visible').each(centerModal);
+    });
+})

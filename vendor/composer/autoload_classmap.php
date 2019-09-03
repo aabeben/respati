@@ -10,5 +10,6 @@ return array(
     'FamilyModel' => $baseDir . '/application/models/FamilyModel.php',
     'FlightModel' => $baseDir . '/application/models/FlightModel.php',
     'PartyModel' => $baseDir . '/application/models/PartyModel.php',
+    'ReservationModel' => $baseDir . '/application/models/ReservationModel.php',
     'RouteModel' => $baseDir . '/application/models/RouteModel.php',
 );

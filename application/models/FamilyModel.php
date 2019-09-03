@@ -8,4 +8,8 @@ class FamilyModel extends Eloquent {
     public function employee() {
         return $this->hasOne('PartyModel', 'nik', 'nik');
     }
+
+    public function rsvp() {
+        return $this->hasMany('ReservationModel', 'nik', 'nik');
+    }
 }

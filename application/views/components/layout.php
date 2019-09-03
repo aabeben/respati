@@ -8,10 +8,12 @@
     <title>Respati 2.0</title>
 
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/adminlte/css/AdminLTE.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/adminlte/css/skins/skin-red-light.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,600,700,300italic">
@@ -30,11 +32,13 @@
 
     <script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/select2/dist/js/select2.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/fastclick/lib/fastclick.js"></script>
+    <script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
     <script src="<?= base_url() ?>assets/vendor/adminlte/js/adminlte.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/adminlte/js/init.js"></script>
 </body>

@@ -12,7 +12,7 @@ class Employee extends CI_Controller {
 			redirect('authentication/signin');
 		} else {
 			$data['content'] ='employee/main'; 
-			$data['party'] 	 = PartyModel::with('family')->take(100)->get();
+			$data['party'] 	 = PartyModel::with('family')->orderBy('id', 'desc')->take(100)->get();
 			
 			$this->load->view('components/layout', $data);
 		}
