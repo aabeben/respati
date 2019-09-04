@@ -98,24 +98,7 @@
                 </div>
 
                 <div class="box-body">
-                    <canvas id="rsvp_rembursement" height="400" style="width: 100%;"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">
-                        <i class="fa fa-bar-chart text-warning"></i>
-                        Statistik <strong>Reservasi Homebase</strong>
-                    </h3>
-                </div>
-
-                <div class="box-body">
-                    <canvas id="rsvp_homebase" height="400" style="width: 100%;"></canvas>
+                    <canvas id="rsvp" height="400" style="width: 100%;"></canvas>
                 </div>
             </div>
         </div>
@@ -147,13 +130,10 @@
                                 <tr>
                                     <td><?= $data->id ?></td>
                                     <td><?= $data->nama ?></td>
-                                    <td><?= $data->nik ?></td>
                                     <td>
-                                        <?php if ($data->trip == 'single') { ?>
-                                        <?= $data->route_from ?> – <?= $data->route_to ?>
-                                        <?php } else { ?>
-                                        <?= $data->route_from ?> – <?= $data->route_to ?>,  <?= $data->route_to ?> – <?= $data->route_from ?>
-                                        <?php } ?>
+                                        <a href="<?= site_url('reservation/homebase') ?>" class="btn btn-warning">
+                                            Lihat
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -178,8 +158,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nama</th>
-                                <th>NIK</th>
-                                <th>Rute</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -188,13 +167,10 @@
                                 <tr>
                                     <td><?= $data->id ?></td>
                                     <td><?= $data->nama ?></td>
-                                    <td><?= $data->nik ?></td>
                                     <td>
-                                        <?php if ($data->trip == 'single') { ?>
-                                        <?= $data->route_from ?> – <?= $data->route_to ?>
-                                        <?php } else { ?>
-                                        <?= $data->route_from ?> – <?= $data->route_to ?>,  <?= $data->route_to ?> – <?= $data->route_from ?>
-                                        <?php } ?>
+                                        <a href="<?= site_url('reservation/reimbursement') ?>" class="btn btn-warning">
+                                            Lihat
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -271,7 +247,7 @@
 </script>
 
 <script>
-    var ctx = document.getElementById('rsvp_rembursement').getContext('2d');
+    var ctx = document.getElementById('rsvp').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -281,28 +257,46 @@
                 '<?= date('F', strtotime("-1 months")) ?>', 
                 'Bulan Ini (<?= date('F') ?>)'
             ],
-            datasets: [{
-                label: '# Reservasi Reimbursement',
-                data: [
-                    <?php if (isset($rsvp_reimbursement_min3_month[0]->total)) print $rsvp_reimbursement_min3_month[0]->total; else print 0; ?>, 
-                    <?php if (isset($rsvp_reimbursement_min2_month[0]->total)) print $rsvp_reimbursement_min2_month[0]->total; else print 0; ?>,
-                    <?php if (isset($rsvp_reimbursement_min1_month[0]->total)) print $rsvp_reimbursement_min1_month[0]->total; else print 0; ?>, 
-                    <?php if (isset($rsvp_reimbursement_this_month[0]->total)) print $rsvp_reimbursement_this_month[0]->total; else print 0; ?>
-                ],
-                backgroundColor: [
-                    '#ff6384',
-                    '#f39c12',
-                    '#ea6972',
-                    '#ff3a3a',
-                    '#B40D1A'
-                ]
-            }]
+            datasets: [
+                {
+                    label: '# Reservasi Reimbursement',
+                    data: [
+                        <?php if (isset($rsvp_reimbursement_min3_month[0]->total)) print $rsvp_reimbursement_min3_month[0]->total; else print 0; ?>, 
+                        <?php if (isset($rsvp_reimbursement_min2_month[0]->total)) print $rsvp_reimbursement_min2_month[0]->total; else print 0; ?>,
+                        <?php if (isset($rsvp_reimbursement_min1_month[0]->total)) print $rsvp_reimbursement_min1_month[0]->total; else print 0; ?>, 
+                        <?php if (isset($rsvp_reimbursement_this_month[0]->total)) print $rsvp_reimbursement_this_month[0]->total; else print 0; ?>
+                    ],
+                    backgroundColor: [
+                        '#ff6384',
+                        '#f39c12',
+                        '#ea6972',
+                        '#ff3a3a',
+                        '#B40D1A'
+                    ]
+                },
+                {
+                    label: '# Reservasi Homebase',
+                    data: [
+                        <?php if (isset($rsvp_homebase_min3_month[0]->total)) print $rsvp_homebase_min3_month[0]->total; else print 0; ?>, 
+                        <?php if (isset($rsvp_homebase_min2_month[0]->total)) print $rsvp_homebase_min2_month[0]->total; else print 0; ?>,
+                        <?php if (isset($rsvp_homebase_min1_month[0]->total)) print $rsvp_homebase_min1_month[0]->total; else print 0; ?>, 
+                        <?php if (isset($rsvp_homebase_this_month[0]->total)) print $rsvp_homebase_this_month[0]->total; else print 0; ?>
+                    ],
+                    backgroundColor: [
+                        '#e2c498',
+                        '#d1ac75',
+                        '#ce9846',
+                        '#f39c12'
+                    ]
+                }
+            ]
         },
         options: {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        stepSize: 1
                     }
                 }]
             }
@@ -321,27 +315,14 @@
                 '<?= date('F', strtotime("-1 months")) ?>', 
                 'Bulan Ini (<?= date('F') ?>)'
             ],
-            datasets: [{
-                label: '# Reservasi Homebase',
-                data: [
-                    <?php if (isset($rsvp_homebase_min3_month[0]->total)) print $rsvp_homebase_min3_month[0]->total; else print 0; ?>, 
-                    <?php if (isset($rsvp_homebase_min2_month[0]->total)) print $rsvp_homebase_min2_month[0]->total; else print 0; ?>,
-                    <?php if (isset($rsvp_homebase_min1_month[0]->total)) print $rsvp_homebase_min1_month[0]->total; else print 0; ?>, 
-                    <?php if (isset($rsvp_homebase_this_month[0]->total)) print $rsvp_homebase_this_month[0]->total; else print 0; ?>
-                ],
-                backgroundColor: [
-                    '#e2c498',
-                    '#d1ac75',
-                    '#ce9846',
-                    '#f39c12'
-                ]
-            }]
+            datasets: []
         },
         options: {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        stepSize: 1
                     }
                 }]
             }

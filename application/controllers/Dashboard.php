@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller {
 			$data['family']   = FamilyModel::count();
 			$data['flight']   = FlightModel::count();
 			$data['route']   = RouteModel::count();
-
+			
 			// child
 			$data['child_nh'] = count(
 				DB::select(
