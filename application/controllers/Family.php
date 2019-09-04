@@ -12,7 +12,11 @@ class Family extends CI_Controller {
 			redirect('authentication/signin');
 		} else {
 			$data['content'] ='family/main'; 
-			$data['family']  = FamilyModel::with('employee')->orderBy('id', 'desc')->take(100)->get();
+
+			if ($this->session->type === 'administrator')
+				$data['family']  = FamilyModel::with('employee')->orderBy('id', 'desc')->take(100)->get();
+			else
+				$data['family']  = FamilyModel::with('employee')->where('nik', $this->session->identity)->orderBy('id', 'desc')->take(100)->get();
 
 			$this->load->view('components/layout', $data);
 		}
@@ -23,7 +27,11 @@ class Family extends CI_Controller {
 			redirect('authentication/signin');
 		} else {
 			$data['content']   ='family/form'; 
-			$data['employee']  = PartyModel::where('type', 'employee')->get();
+
+			if ($this->session->type === 'administrator')
+				$data['employee']  = PartyModel::where('type', 'employee')->get();
+			else
+				$data['employee']  = PartyModel::where('type', 'employee')->where('nik', $this->session->identity)->get();
 
 			$segment = $this->uri->segment_array()[3];
 

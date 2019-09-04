@@ -54,6 +54,26 @@
             </li>
         <?php } ?>
 
+        <?php if ($this->session->type === 'employee') { ?>
+        <li class="header">Data Master</li>
+            <li class="treeview <?php if($this->uri->uri_string() == 'employee' || $this->uri->uri_string() == 'family') { print 'active'; } ?>">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>Pihak</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li <?php if ($this->uri->uri_string() == 'family') { print 'class="active"'; } ?>>
+                        <a href="<?= site_url('family') ?>">
+                            <i class="fa fa-circle-o"></i> Keluarga
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        <?php } ?>
+
         <?php if ($this->session->type !== 'administrator') { ?>
             <li class="header">Pemesanan Tiket</li>
             <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase') { print 'active'; } ?>">
