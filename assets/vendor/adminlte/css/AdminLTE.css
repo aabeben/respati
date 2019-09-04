@@ -2127,7 +2127,7 @@ a:focus {
   max-width: 100%;
 }
 .info-box-content {
-  padding: 5px 10px;
+  padding: 20px;
   margin-left: 90px;
 }
 .info-box-number {
@@ -2144,7 +2144,12 @@ a:focus {
   text-overflow: ellipsis;
 }
 .info-box-text {
-  text-transform: uppercase;
+}
+.info-link {
+  color: unset !important;
+}
+.info-box:hover {
+  transform: scale(1.020);
 }
 .info-box-more {
   display: block;
@@ -2173,6 +2178,7 @@ a:focus {
   margin: 0;
   border-radius: 2px;
 }
+
 .timeline > li {
   position: relative;
   margin-right: 10px;

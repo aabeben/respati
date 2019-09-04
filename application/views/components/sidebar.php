@@ -13,8 +13,8 @@
         
         <ul class="sidebar-menu" data-widget="tree">
         <?php if ($this->session->type === 'administrator') { ?>
-            <li class="singleview <?php if($this->uri->uri_string() == 'dashboard') { print 'class="active"'; } ?>">
-                <a href="#">
+            <li class="singleview <?php if($this->uri->uri_string() == 'dashboard') { print 'active'; } ?>">
+                <a href="<?= site_url('dashboard') ?>">
                     <i class="fa fa-pie-chart"></i> <span>Dasbor</span>
                 </a>
             </li>

@@ -23,7 +23,7 @@ class Family extends CI_Controller {
 			redirect('authentication/signin');
 		} else {
 			$data['content']   ='family/form'; 
-			$data['employee']  = PartyModel::all();
+			$data['employee']  = PartyModel::where('type', 'employee')->get();
 
 			$segment = $this->uri->segment_array()[3];
 
