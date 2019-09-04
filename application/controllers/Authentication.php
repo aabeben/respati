@@ -27,10 +27,7 @@ class Authentication extends CI_Controller {
 		$password = $this->input->post('password');
 
 		if ($this->authenticationlibraries->login($username, $password)) {
-			if ($this->session->type === 'administrator')
-				redirect(site_url('dashboard'));
-			else
-				redirect(site_url('reservation/homebase'));
+			redirect(site_url('dashboard'));
 		} else {
 			$errors = $this->authenticationlibraries->error();
 			$this->session->set_flashdata('status', $errors);

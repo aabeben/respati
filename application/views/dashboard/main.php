@@ -1,4 +1,5 @@
 <section class="content">
+    <?php if ($this->session->type == 'administrator') { ?>
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <a href="<?= site_url('employee') ?>" class="info-link">
@@ -93,7 +94,7 @@
                 <div class="box-header">
                     <h3 class="box-title">
                         <i class="fa fa-bar-chart text-warning"></i>
-                        Statistik <strong>Reservasi Reimbursement</strong>
+                        Statistik <strong>Reservasi</strong>
                     </h3>
                 </div>
 
@@ -180,6 +181,157 @@
             </div>
         </div>
     </div>
+    <?php } else { ?>
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <a href="<?= site_url('family') ?>" class="info-link">
+                <div class="info-box">
+                    <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Anggota <strong>Keluarga</strong></span>
+                        <span class="info-box-number"><?= number_format($family) ?></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <a href="<?= site_url('family') ?>" class="info-link">
+                <div class="info-box">
+                    <span class="info-box-icon bg-orange"><i class="fa fa-child"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Jumlah <strong>Anak</strong></span>
+                        <span class="info-box-number"><?= number_format($family_child) ?></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <a href="<?= site_url('reservation/homebase') ?>" class="info-link">
+                <div class="info-box">
+                    <span class="info-box-icon bg-yellow"><i class="fa fa-map"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total <strong>Reservasi Homebase</strong></span>
+                        <span class="info-box-number"><?= number_format($total_homebase) ?></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <a href="<?= site_url('reservation/reimbursement') ?>" class="info-link">
+                <div class="info-box">
+                    <span class="info-box-icon bg-red"><i class="fa fa-map"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total <strong>Reservasi Reimbursement</strong></span>
+                        <span class="info-box-number"><?= number_format($total_reimbursement) ?></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <i class="fa fa-bar-chart text-warning"></i>
+                        Statistik <strong>Reservasi</strong>
+                    </h3>
+                </div>
+
+                <div class="box-body">
+                    <canvas id="rsvp" height="400" style="width: 100%;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <i class="fa fa-table text-warning"></i>
+                        <strong>Reservasi Homebase</strong> Terakhir
+                    </h3>
+                </div>
+
+                <div class="box-body">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama</th>
+                                <th>NIK</th>
+                                <th>Rute</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php foreach ($rsvp_homebase_last as $key => $data): ?>
+                                <tr>
+                                    <td><?= $data->id ?></td>
+                                    <td><?= $data->nama ?></td>
+                                    <td>
+                                        <a href="<?= site_url('reservation/homebase') ?>" class="btn btn-warning">
+                                            Lihat
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>    
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <i class="fa fa-table text-warning"></i>
+                        <strong>Reservasi Reimbursement</strong> Terakhir
+                    </h3>
+                </div>
+
+                <div class="box-body">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php foreach ($rsvp_reimbursement_last as $key => $data): ?>
+                                <tr>
+                                    <td><?= $data->id ?></td>
+                                    <td><?= $data->nama ?></td>
+                                    <td>
+                                        <a href="<?= site_url('reservation/reimbursement') ?>" class="btn btn-warning">
+                                            Lihat
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>    
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
