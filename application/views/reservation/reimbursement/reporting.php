@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css"/>
+
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -5,34 +7,108 @@
                 <div class="box-header rsvp">
                     <h3 class="box-title">
                         <i class="fa fa-ticket"></i>
-                        Reimbursement 
+                        <strong>Reimbursement</strong> Report
                     </h3>
-                    <?php 
-                        $last_segment = $this->uri->total_segments();
-                        $record_num = $this->uri->segment($last_segment);
-                        if ($record_num != 'reimbursement_history') { 
-                    ?>
-                    <?php if ($this->session->type === 'employee') { ?>
-                    <a href="#!" data-toggle="modal" data-target="#modal-reimbursement" class="btn btn-danger btn-lg">
-                        <i class="fa fa-plus"></i> Tambah Data Baru
-                    </a>
-                    <?php } ?>
-                    <?php } ?>
                 </div>
 
-                    <?php if ($this->session->flashdata('state') == 'updated' || $this->session->flashdata('state') == 'stored') { ?>
-                        <div style="margin-top:20px;">
-                            <div class="alert alert-success">
-                                <i class="fa fa-check-square-o"></i> Data telah tersimpan.
-                            </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h5>Filter</h5>
                         </div>
-                    <?php } else if ($this->session->flashdata('state') == 'destroyed') { ?>
-                        <div style="margin-top:20px;">
-                            <div class="alert alert-danger">
-                                <i class="fa fa-check-square-o"></i> Data telah terhapus.
-                            </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <form class="form-inline" method="GET">
+                            <?php if ($this->session->type != 'employee') { ?>
+                                <div class="form-group">
+                                    <label for="employee">Karyawan</label>
+                                    <select id="employee" name="employee" class="form-control form-search">
+                                        <option 
+                                        <?php 
+                                            if ($this->input->get('employee')) {
+                                                if ($this->input->get('employee') == 'all') {
+                                                        print 'selected';
+                                                }
+                                            }
+                                        ?>
+                                        value="all">-- Semua Karyawan --</option>
+                                        <?php foreach ($employee as $key => $data): ?>
+                                            <option
+                                            <?php 
+                                                if ($this->input->get('employee')) {
+                                                    if ($this->input->get('employee') != 'all') {
+                                                        if ($this->input->get('employee') == $data->nik) {
+                                                            print 'selected';
+                                                        }
+                                                    }
+                                                }
+                                            ?>
+                                             value="<?= $data->nik ?>"><?= $data->nama_lengkap ?> - <?= $data->nik ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            <?php } ?>
+
+                                <div class="form-group">
+                                    <label for="from_date">Dari Tanggal</label>
+                                    <input type="text" class="form-control form-date-mysql" id="from_date" value="<?= $this->input->get('from_date') ?>" name="from_date">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="from_date">Ke Tanggal</label>
+                                    <input type="text" class="form-control form-date-mysql" id="to_date" value="<?= $this->input->get('to_date') ?>" name="to_date">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select class="form-control" id="status" name="status">
+                                        <option
+                                        <?php 
+                                            if ($this->input->get('status')) {
+                                                if ($this->input->get('status') == 'all') {
+                                                    print 'selected';
+                                                }
+                                            }
+                                        ?>
+                                        value="all">-- Semua Status --</option>
+                                        <option
+                                        <?php 
+                                            if ($this->input->get('status')) {
+                                                if ($this->input->get('status') == 'true') {
+                                                    print 'selected';
+                                                }
+                                            }
+                                        ?> value="true">Approved</option>
+                                        <option
+                                        <?php 
+                                            if ($this->input->get('status')) {
+                                                if ($this->input->get('status') == 'reject') {
+                                                    print 'selected';
+                                                }
+                                            }
+                                        ?>
+                                        value="reject">Reject</option>
+                                        <option
+                                        <?php 
+                                            if ($this->input->get('status')) {
+                                                if ($this->input->get('status') == 'false') {
+                                                    print 'selected';
+                                                }
+                                            }
+                                        ?>
+                                        value="false">Open</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" style="display: block !important; margin-top: 10px;">
+                                    <button type="submit" class="btn btn-primary ">Filter</button>
+                                </div>
+                            </form>
                         </div>
-                    <?php } ?>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
@@ -41,13 +117,14 @@
                         <div class="box-header rsvp-block">
                             <h4>
                                 <i class="fa fa-share text-danger"></i>
-                                Reimbursement untuk <strong>Keberangkatan</strong>
+                                Data <strong>Keberangkatan</strong>
                             </h4>
+
+                            <h5 style="position: relative; top: 17.5px;"><i class="fa fa-th"></i> <strong>Export Tools</strong></h5>
                         </div>
 
-                        <?php if ($this->session->type === 'employee') { ?>
                         <div class="box-body">
-                            <table class="table table-bordered table-striped table-data">
+                            <table class="table table-bordered table-striped table-b">
                                 <thead>
                                     <tr>
                                         <th>No. Reservasi</th>
@@ -58,7 +135,6 @@
                                         <th>Kode Flight</th>
                                         <th>Harga Tiket</th>
                                         <th>Status</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -81,81 +157,11 @@
                                                     <span class="label label-success">Sudah di Approve</span>
                                                 <?php } ?>
                                             </td>
-                                            <td>
-                                            <?php if ($data->st_approv == 'false') { ?>
-                                                <a href="<?= site_url('reservation/destroy/' . $data->id) ?>" class="btn btn-warning btn-md" data-toggle="tooltip" title="Batalkan Permintaan Reimbursement">
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            <?php } ?>
-                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
-                        <?php } else { ?>
-                            <div class="box-body">
-                                <table class="table table-bordered table-striped table-data">
-                                    <thead>
-                                        <tr>
-                                            <th>Reservasi</th>
-                                            <th>Nama</th>
-                                            <th>Maskapai</th>
-                                            <th>Rute</th>
-                                            <th>Tanggal</th>
-                                            <th>Flight</th>
-                                            <th>Harga Tiket</th>
-                                            <th>Dokumen</th>
-                                            <th>Tgl Pengajuan</th>
-                                            <th>Status</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <?php foreach ($depart as $key => $data): ?>
-                                            <tr>
-                                                <td><?= $data->id; ?></td>
-                                                <td><strong><?= $data->nama; ?></strong> <small>NIK: <strong><?= $data->nik ?></strong></small></td>
-                                                <td><strong><?= $data->flightDepart->flight; ?></strong></td>
-                                                <td><strong><?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>) - <?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>)</strong></td>
-                                                <td><strong><?= $data->tgl_berangkat; ?>, <?= $data->waktu_berangkat; ?></strong></td>
-                                                <td><strong><?= $data->kode_flight; ?></strong></td>
-                                                <td><strong>Rp<?= number_format($data->harga); ?></strong></td>
-                                                <td>
-                                                    <?php if ($data->document === null || $data->document === '') { ?>
-                                                        <span class="text-danger">-</span>
-                                                    <?php } else { ?>
-                                                        <a href="<?= base_url() ?>/assets/storage/image/boarding/<?= $data->document ?>" target="_blank" class="text-success" style="color: #1d9b95;"><strong>Klik <i class="fa fa-picture-o"></i></strong></a>
-                                                    <?php } ?>
-                                                </td>
-                                                <td><?= $data->created_at ?></td>
-                                                <td>
-                                                    <?php if ($data->st_approv == 'false') { ?>
-                                                        <span class="label label-primary">Menunggu Approval</span>
-                                                    <?php } else if ($data->st_approv == 'reject') { ?>
-                                                        <span class="label label-danger">Telah Direject</span>
-                                                    <?php } else { ?>
-                                                        <span class="label label-success">Sudah di Approve</span>
-                                                    <?php } ?>
-                                                </td>
-
-                                                <td>
-                                                    <?php if ($data->st_approv == 'false') { ?>
-                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=true&back=reimbursement" class="btn btn-success text-white btn-md" style="color: white;" data-toggle="tooltip" title="Approve">
-                                                        <i class="fa fa-check"></i> Approve
-                                                    </a>
-                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=reject&back=reimbursement" class="btn btn-danger btn-md" data-toggle="tooltip" title="Reject">
-                                                        <i class="fa fa-times"></i> Reject
-                                                    </a>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
 
@@ -164,13 +170,15 @@
                         <div class="box-header rsvp-block">
                             <h4>
                                 <i class="fa fa-share fa-flip-horizontal text-danger"></i>
-                                Reimbursement untuk <strong>Kepulangan</strong>
+                                Data <strong>Kepulangan</strong>
                             </h4>
+                            
+                            <h5 style="position: relative; top: 17.5px;"><i class="fa fa-th"></i> <strong>Export Tools</strong></h5>
                         </div>
 
-                        <?php if ($this->session->type === 'employee') { ?>
+                        
                         <div class="box-body">
-                            <table class="table table-bordered table-striped table-data">
+                            <table class="table table-bordered table-striped table-b">
                                 <thead>
                                     <tr>
                                         <th>No. Reservasi</th>
@@ -181,7 +189,6 @@
                                         <th>Kode Flight</th>
                                         <th>Harga Tiket</th>
                                         <th>Status</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -204,85 +211,11 @@
                                                     <span class="label label-success">Sudah di Approve</span>
                                                 <?php } ?>
                                             </td>
-                                            <td>
-
-                                            <?php if ($data->st_approv == 'false') { ?>
-                                                <a href="<?= site_url('reservation/destroy/' . $data->id) ?>" class="btn btn-warning btn-md" data-toggle="tooltip" title="Batalkan Permintaan Reimbursement">
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            <?php } ?>
-                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
-                        <?php } else { ?>
-                            <div class="box-body">
-                            <table class="table table-bordered table-striped table-data">
-                                <thead>
-                                    <tr>
-                                        <th>Reservasi</th>
-                                        <th>Nama</th>
-                                        <th>Maskapai</th>
-                                        <th>Rute</th>
-                                        <th>Tanggal Pulang</th>
-                                        <th>Kode Flight</th>
-                                        <th>Harga Tiket</th>
-                                        <th>Dokumen</th>
-                                        <th>Tgl Pengajuan</th>
-                                        <th>Status</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <?php foreach ($return as $key => $data): ?>
-                                        <tr>
-                                            <td><?= $data->id; ?></td>
-                                            <td><strong><?= $data->nama; ?></strong> <small>NIK: <strong><?= $data->nik ?></strong></small></td>
-                                            <td><strong><?= $data->flightReturn->flight; ?></strong></td>
-                                            <td><strong><?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>) - <?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>)</strong></td>
-                                            <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_berangkat; ?></strong></td>
-                                            <td><strong><?= $data->kode_flight; ?></strong></td>
-                                            <td><strong>Rp<?= number_format($data->harga_pulang); ?></strong></td>
-                                            <td>
-                                                <?php if ($data->document === null || $data->document === '') { ?>
-                                                    <span class="text-danger">Tidak ada dokumen boarding pass.</span>
-                                                <?php } else { ?>
-                                                    <a href="<?= base_url() ?>/assets/storage/image/boarding/<?= $data->document ?>" target="_blank" class="text-success" style="color: #1d9b95;"><strong>Klik <i class="fa fa-picture-o"></i></strong></a>
-                                                <?php } ?>
-                                            </td>
-                                            <td><?= $data->created_at; ?></td>
-                                            <td>
-                                                <?php if ($data->st_approv == 'false') { ?>
-                                                    <span class="label label-primary">Menunggu Approval</span>
-                                                <?php } else if ($data->st_approv == 'reject') { ?>
-                                                    <span class="label label-danger">Telah Direject</span>
-                                                <?php } else { ?>
-                                                    <span class="label label-success">Sudah di Approve</span>
-                                                <?php } ?>
-                                            </td>
-                                            <td>
-                                                <?php if ($data->st_approv == 'false') { ?>
-                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=true&back=reimbursement" class="btn btn-success text-white btn-md" style="color: white;" data-toggle="tooltip" title="Approve">
-                                                        <i class="fa fa-check"></i> Approve
-                                                    </a>
-                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=reject&back=reimbursement" class="btn btn-danger btn-md" data-toggle="tooltip" title="Reject">
-                                                        <i class="fa fa-times"></i> Reject
-                                                    </a>
-                                                <?php } else if ($data->st_approv == 'reject') { ?>
-                                                    <?php if ($data->st_info != null || $data->st_info != '' || $data->st_info != 'false') { ?>
-                                                        Catatan: <?= $data->st_info ?>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <?php } ?>
                     </div>
                 </div>
 
@@ -294,13 +227,13 @@
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                     <h4 class="modal-title">
-                                        <i class="fa fa-ticket text-danger"></i> Tambah Data <strong>Reimbursement</strong>
+                                        <i class="fa fa-ticket text-danger"></i> Tambah Data <strong>Homebase</strong>
                                     </h4>
                                 </div>
                                 
                                 <div class="modal-body">
                                     <div class="form-group-hidden">
-                                        <input type="hidden" id="entity" name="entity" class="form-control" value="REIMBURSEMENT">
+                                        <input type="hidden" id="entity" name="entity" class="form-control" value="HOMEBASE">
                                     </div>
 
                                     <div class="row">
@@ -311,7 +244,6 @@
                                                 <li sequence="3"><a data-toggle="tab" href="#data-flight" onclick="validation(3)">3. Maskapai</a></li>
                                                 <li sequence="4"><a data-toggle="tab" href="#data-date" onclick="validation(4)">4. Tanggal</a></li>
                                                 <li sequence="5"><a data-toggle="tab" href="#data-information" onclick="validation(5)">5. Kode Flight & Harga Tiket</a></li>
-                                                <li sequence="6"><a data-toggle="tab" href="#data-document" onclick="validation(6)">6. Upload Berkas</a></li>
                                             </ul>
                                         </div>
 
@@ -512,25 +444,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
-                                                <div id="data-document" class="tab-pane fade" sequence="6">
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                    <h3><strong>Upload Berkas</strong></h3>
-                                                                </div>
-
-                                                                <div class="panel-body">
-                                                                    <div class="form-group">
-                                                                        <label>Boarding Pass</label>
-                                                                        <input type="file" class="form-control" id="boarding" name="boarding" required>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -554,56 +467,26 @@
 
 </section>
 
+
 <script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+
 <script>
-    let flaggedFamily = <?= $flagged_family ?>
-
-    $(document).ready(function() {
-        $('#party').change(function() {
-            let party    = $(this).val(),
-                statusku = $(this).select2('data')[0].element.getAttribute('statusku')
-
-            $('#statusku').val(statusku)
-
-            if (statusku === 'Add') {
-                $('#name-wrapper').show()
-                $('#nama').val('')
-            } else if (statusku === 'SELF') {
-                $('#name-wrapper').hide()
-                $('#nama').val('<?= $this->session->name ?>')
-            } else {
-                $('#nama').val($(this).select2('data')[0].text)
-                $('#name-wrapper').hide()
-            }
-        }) 
-
-        const child      = flaggedFamily.filter(flagged => flagged.statusku === 'CHILD').length,
-              spouse     = flaggedFamily.filter(flagged => flagged.statusku === 'SPOUSE').length,
-              additional = flaggedFamily.filter(flagged => flagged.statusku === 'Add').length,
-              self       = flaggedFamily.filter(flagged => flagged.statusku === 'SELF').length
-
-        if (child === 3)
-            $('#party [statusku=CHILD]').attr('disabled', true)
-
-        if (spouse === 1)
-            $('#party [statusku=SPOUSE]').attr('disabled', true)
-
-        if (additional === 1)
-            $('#party [statusku=Add]').attr('disabled', true)
-
-        if (self === 1)
-            $('#party [statusku=SELF]').attr('disabled', true)
-
-        for (let i = 0; i <flaggedFamily.length; i++) {
-            $('#party [familyIdentity="'+ flaggedFamily[i].nama +'"]').attr('disabled', true)
-        }
-
-        $('input[name=typetrip]').click(function() {
-            checkRadio()
-        })
-
-        checkRadio()
-    })
+$('.table-b').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
 
     function validation(step) {
         switch(parseInt(step)) {
@@ -703,7 +586,7 @@
             }
         }
 
-        if (parseInt(list) === 6) {
+        if (parseInt(list) === 5) {
             $('#btnNext').hide()
             $('#btnSubmit').show()
         } else {
@@ -711,6 +594,8 @@
             $('#btnSubmit').hide()
         }
     }
+
+
 
     function checkRadio() {
         let checkValue = $('input[name=typetrip]:checked').val();
@@ -723,6 +608,7 @@
             $('#information-return').show()
             $('#date-return').show()
             $('#return-wrapper').show()
+
 
         }
     }

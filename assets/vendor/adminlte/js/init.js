@@ -358,6 +358,10 @@ $(function () {
     $('.table-data').DataTable()
     $('.form-search').select2();
 
+    $('.form-date-mysql').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+
     $('.form-date').datepicker({
         startDate:"-7d",
         autoclose: true,

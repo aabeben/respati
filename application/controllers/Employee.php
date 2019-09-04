@@ -94,7 +94,7 @@ class Employee extends CI_Controller {
 			if ($this->session->type === 'administrator')
 				redirect(site_url('employee'));
 			else	
-			redirect(site_url('employee/form/' . $this->session->unique));
+				redirect(site_url('employee/form/' . $this->session->unique));
 		}
 	}
 

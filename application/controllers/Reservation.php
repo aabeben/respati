@@ -98,6 +98,267 @@ class Reservation extends CI_Controller {
 		}
 	}
 
+	public function homebase_reporting() { 
+		if (!$this->authenticationlibraries->active()) {
+			redirect('authentication/signin');
+		} else {
+			if ($this->session->type === 'employee') {
+				$data['content'] ='reservation/homebase/reporting';
+
+
+				$data['employee'] = PartyModel::where('type', 'employee')->get();
+				$depart  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
+											->where('metode_pemesanan', 'H')
+											->where('nik', $this->session->identity)
+											->where('trip', '!=', 'null');
+
+				
+				if ($this->input->get('status')) {
+					if ($this->input->get('status') != 'all') {
+						$depart->where('st_approv', $this->input->get('status'));
+					}
+				}
+
+				if ($this->input->get('employee')) {
+					if ($this->input->get('employee') != 'all') {
+						$depart->where('nik', $this->input->get('employee'));
+					}
+				}
+
+				if ($this->input->get('from_date') || $this->input->get('to_date')) {
+					$from_date = $this->input->get('from_date') . ' 00:00:00';
+					$to_date   = $this->input->get('to_date') . ' 23:59:59';
+
+					$depart->whereBetween('created_at', [$from_date, $to_date]);
+				}
+
+				$data['depart'] = $depart->get();
+
+
+
+
+				$return  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
+								->where('metode_pemesanan', 'H')
+								->where('trip', 'double');
+
+
+				if ($this->input->get('status')) {
+					if ($this->input->get('status') != 'all') {
+						$return->where('st_approv', $this->input->get('status'));
+					}
+				}
+
+				if ($this->input->get('employee')) {
+					if ($this->input->get('employee') != 'all') {
+						$return->where('nik', $this->input->get('employee'));
+					}
+				}
+
+				if ($this->input->get('from_date') || $this->input->get('to_date')) {
+					$from_date = $this->input->get('from_date') . ' 00:00:00';
+					$to_date   = $this->input->get('to_date') . ' 23:59:59';
+
+					$return->whereBetween('created_at', [$from_date, $to_date]);
+				}
+
+				$data['return'] = $return->get();
+
+				$this->load->view('components/layout', $data);
+			} else {
+				$data['content'] ='reservation/homebase/reporting';
+
+
+				$data['employee'] = PartyModel::where('type', 'employee')->get();
+				$depart  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
+											->where('metode_pemesanan', 'H')
+											->where('trip', '!=', 'null');
+
+				
+				if ($this->input->get('status')) {
+					if ($this->input->get('status') != 'all') {
+						$depart->where('st_approv', $this->input->get('status'));
+					}
+				}
+
+				if ($this->input->get('employee')) {
+					if ($this->input->get('employee') != 'all') {
+						$depart->where('nik', $this->input->get('employee'));
+					}
+				}
+
+				if ($this->input->get('from_date') || $this->input->get('to_date')) {
+					$from_date = $this->input->get('from_date') . ' 00:00:00';
+					$to_date   = $this->input->get('to_date') . ' 23:59:59';
+
+					$depart->whereBetween('created_at', [$from_date, $to_date]);
+				}
+
+				$data['depart'] = $depart->get();
+
+
+
+
+				$return  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
+								->where('metode_pemesanan', 'H')
+								->where('trip', 'double');
+
+
+				if ($this->input->get('status')) {
+					if ($this->input->get('status') != 'all') {
+						$return->where('st_approv', $this->input->get('status'));
+					}
+				}
+
+				if ($this->input->get('employee')) {
+					if ($this->input->get('employee') != 'all') {
+						$return->where('nik', $this->input->get('employee'));
+					}
+				}
+
+				if ($this->input->get('from_date') || $this->input->get('to_date')) {
+					$from_date = $this->input->get('from_date') . ' 00:00:00';
+					$to_date   = $this->input->get('to_date') . ' 23:59:59';
+
+					$return->whereBetween('created_at', [$from_date, $to_date]);
+				}
+
+				$data['return'] = $return->get();
+
+				$this->load->view('components/layout', $data);
+			}
+		}
+	}
+
+	public function reimbursement_reporting() { 
+		if (!$this->authenticationlibraries->active()) {
+			redirect('authentication/signin');
+		} else {
+			if ($this->session->type === 'employee') {
+				$data['content'] ='reservation/reimbursement/reporting';
+
+
+				$data['employee'] = PartyModel::where('type', 'employee')->get();
+				$depart  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
+											->where('metode_pemesanan', 'R')
+											->where('nik', $this->session->identity)
+											->where('trip', '!=', 'null');
+
+				
+				if ($this->input->get('status')) {
+					if ($this->input->get('status') != 'all') {
+						$depart->where('st_approv', $this->input->get('status'));
+					}
+				}
+
+				if ($this->input->get('employee')) {
+					if ($this->input->get('employee') != 'all') {
+						$depart->where('nik', $this->input->get('employee'));
+					}
+				}
+
+				if ($this->input->get('from_date') || $this->input->get('to_date')) {
+					$from_date = $this->input->get('from_date') . ' 00:00:00';
+					$to_date   = $this->input->get('to_date') . ' 23:59:59';
+
+					$depart->whereBetween('created_at', [$from_date, $to_date]);
+				}
+
+				$data['depart'] = $depart->get();
+
+
+
+
+				$return  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
+								->where('metode_pemesanan', 'R')
+								->where('trip', 'double');
+
+
+				if ($this->input->get('status')) {
+					if ($this->input->get('status') != 'all') {
+						$return->where('st_approv', $this->input->get('status'));
+					}
+				}
+
+				if ($this->input->get('employee')) {
+					if ($this->input->get('employee') != 'all') {
+						$return->where('nik', $this->input->get('employee'));
+					}
+				}
+
+				if ($this->input->get('from_date') || $this->input->get('to_date')) {
+					$from_date = $this->input->get('from_date') . ' 00:00:00';
+					$to_date   = $this->input->get('to_date') . ' 23:59:59';
+
+					$return->whereBetween('created_at', [$from_date, $to_date]);
+				}
+
+				$data['return'] = $return->get();
+
+				$this->load->view('components/layout', $data);
+			} else {
+				$data['content'] ='reservation/reimbursement/reporting';
+
+				$data['employee'] = PartyModel::where('type', 'employee')->get();
+				$depart  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
+											->where('metode_pemesanan', 'R')
+											->where('trip', '!=', 'null');
+
+				
+				if ($this->input->get('status')) {
+					if ($this->input->get('status') != 'all') {
+						$depart->where('st_approv', $this->input->get('status'));
+					}
+				}
+
+				if ($this->input->get('employee')) {
+					if ($this->input->get('employee') != 'all') {
+						$depart->where('nik', $this->input->get('employee'));
+					}
+				}
+
+				if ($this->input->get('from_date') || $this->input->get('to_date')) {
+					$from_date = $this->input->get('from_date') . ' 00:00:00';
+					$to_date   = $this->input->get('to_date') . ' 23:59:59';
+
+					$depart->whereBetween('created_at', [$from_date, $to_date]);
+				}
+
+				$data['depart'] = $depart->get();
+
+
+
+
+				$return  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
+								->where('metode_pemesanan', 'R')
+								->where('trip', 'double');
+
+
+				if ($this->input->get('status')) {
+					if ($this->input->get('status') != 'all') {
+						$return->where('st_approv', $this->input->get('status'));
+					}
+				}
+
+				if ($this->input->get('employee')) {
+					if ($this->input->get('employee') != 'all') {
+						$return->where('nik', $this->input->get('employee'));
+					}
+				}
+
+				if ($this->input->get('from_date') || $this->input->get('to_date')) {
+					$from_date = $this->input->get('from_date') . ' 00:00:00';
+					$to_date   = $this->input->get('to_date') . ' 23:59:59';
+
+					$return->whereBetween('created_at', [$from_date, $to_date]);
+				}
+
+				$data['return'] = $return->get();
+
+				$this->load->view('components/layout', $data);
+			}
+		}
+	}
+
 	public function reimbursement() { 
 		if (!$this->authenticationlibraries->active()) {
 			redirect('authentication/signin');

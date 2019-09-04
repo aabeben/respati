@@ -5755,3 +5755,10 @@ table tr td small {
 .sweet-alert .btn {
   margin-bottom: 25px !important;
 }
+
+button.dt-button {
+  color: white !important;
+  border: none !important;
+  background: #f39c12 !important;
+  padding: 10px 25px !important;
+}

@@ -55,7 +55,7 @@
         <?php } ?>
 
         <?php if ($this->session->type === 'employee') { ?>
-        <li class="header">Data Master</li>
+            <li class="header">Data Master</li>
             <li class="treeview <?php if($this->uri->uri_string() == 'employee' || $this->uri->uri_string() == 'family') { print 'active'; } ?>">
                 <a href="#">
                     <i class="fa fa-user"></i> <span>Pihak</span>
@@ -87,7 +87,7 @@
                 </a>
             </li>
 
-            <li class="header">Histori Pemesanan</li>
+            <!-- <li class="header">Histori Pemesanan</li>
             <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase_history') { print 'active'; } ?>">
                 <a href="<?= site_url('reservation/homebase_history') ?>">
                     <i class="fa fa-ticket"></i> <span>Homebase</span>
@@ -95,6 +95,19 @@
             </li>
             <li class="singleview <?php if($this->uri->uri_string() == 'reservation/reimbursement_history') { print 'active'; } ?>">
                 <a href="<?= site_url('reservation/reimbursement_history') ?>">
+                    <i class="fa fa-ticket"></i> <span>Reimbursement</span>
+                </a>
+            </li> -->
+
+            <li class="header">Reporting</li>
+            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase_reporting') { print 'active'; } ?>">
+                <a href="<?= site_url('reservation/homebase_reporting') ?>?from_date=<?= date('Y-m-d') ?>&to_date=<?= date('Y-m-d') ?>">
+                    <i class="fa fa-ticket"></i> <span>Homebase</span>
+                </a>
+            </li>
+
+            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/reimbursement_reporting') { print 'active'; } ?>">
+                <a href="<?= site_url('reservation/reimbursement_reporting') ?>?from_date=<?= date('Y-m-d') ?>&to_date=<?= date('Y-m-d') ?>">
                     <i class="fa fa-ticket"></i> <span>Reimbursement</span>
                 </a>
             </li>
@@ -107,6 +120,19 @@
             </li>
             <li class="singleview <?php if($this->uri->uri_string() == 'reservation/reimbursement') { print 'active'; } ?>">
                 <a href="<?= site_url('reservation/reimbursement') ?>">
+                    <i class="fa fa-ticket"></i> <span>Reimbursement</span>
+                </a>
+            </li>
+
+            <li class="header">Reporting</li>
+            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/homebase_reporting') { print 'active'; } ?>">
+                <a href="<?= site_url('reservation/homebase_reporting') ?>?from_date=<?= date('Y-m-d') ?>&to_date=<?= date('Y-m-d') ?>">
+                    <i class="fa fa-ticket"></i> <span>Homebase</span>
+                </a>
+            </li>
+
+            <li class="singleview <?php if ($this->uri->uri_string() == 'reservation/reimbursement_reporting') { print 'active'; } ?>">
+                <a href="<?= site_url('reservation/reimbursement_reporting') ?>?from_date=<?= date('Y-m-d') ?>&to_date=<?= date('Y-m-d') ?>">
                     <i class="fa fa-ticket"></i> <span>Reimbursement</span>
                 </a>
             </li>
