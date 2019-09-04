@@ -122,7 +122,6 @@
                                 <th>#</th>
                                 <th>Nama</th>
                                 <th>NIK</th>
-                                <th>Rute</th>
                             </tr>
                         </thead>
 
@@ -272,7 +271,6 @@
                                 <th>#</th>
                                 <th>Nama</th>
                                 <th>NIK</th>
-                                <th>Rute</th>
                             </tr>
                         </thead>
 
