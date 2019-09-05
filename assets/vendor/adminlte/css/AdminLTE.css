@@ -5762,3 +5762,13 @@ button.dt-button {
   background: #f39c12 !important;
   padding: 10px 25px !important;
 }
+.notifications-menu a i.inh {
+  color: #000 !important;
+  font-size: 20px;
+  background: transparent !important;
+}
+
+.notifications-menu span.inh {
+  position: relative !important;
+  top: -17px !important;
+}

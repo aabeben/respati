@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/adminlte/css/AdminLTE.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/adminlte/css/skins/skin-red-light.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,600,700,300italic">
+    <link rel="stylesheet" href="https://daneden.github.io/animate.css/animate.min.css">
 </head>
 <body class="hold-transition skin-red-light sidebar-mini">
     <div class="wrapper">
@@ -41,5 +42,61 @@
     <script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
     <script src="<?= base_url() ?>assets/vendor/adminlte/js/adminlte.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/adminlte/js/init.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "<?= site_url('reservation/serviceRsvpNotification') ?>",
+                type: 'GET',
+                success: function(response) {
+                    let dataRes = JSON.parse(response)[0]
+
+                    if (dataRes.total > 0) {
+                        $('#updateNotiTrigger').addClass('animated infinite jello')
+                        $('#total_noti').html(dataRes.total)
+                    } else {
+                        $('#updateNotiTrigger').removeClass('animated infinite jello')
+                    }
+
+                    $('#noti_homebase_approve').html(dataRes.noti_homebase_approve)
+                    $('#noti_homebase_reject').html(dataRes.noti_homebase_reject)
+                    $('#noti_reimbursement_approve').html(dataRes.noti_reimbursement_approve)
+                    $('#noti_reimbursement_reject').html(dataRes.noti_reimbursement_reject)
+
+                    if (dataRes.noti_homebase_approve === 0)
+                        $('#noti_homebase_approve_wrap').hide()
+                    else
+                        $('#noti_homebase_approve_wrap').show()
+
+
+                    if (dataRes.noti_homebase_reject === 0)
+                        $('#noti_homebase_reject_wrap').hide()
+                    else
+                        $('#noti_homebase_reject_wrap').show()
+
+                    if (dataRes.noti_reimbursement_approve === 0)
+                        $('#noti_reimbursement_approve_wrap').hide()
+                    else
+                        $('#noti_reimbursement_approve_wrap').show()
+
+
+                    if (dataRes.noti_reimbursement_reject === 0)
+                        $('#noti_reimbursement_reject_wrap').hide()
+                    else
+                        $('#noti_reimbursement_reject_wrap').show()
+                }
+            });
+        })
+
+        function updateNoti() {
+            $.ajax({
+                url: "<?= site_url('reservation/updateNoti') ?>",
+                type: 'GET',
+                success: function(response) {
+                    return true
+                }
+            });
+        }
+    </script>
 </body>
 </html>

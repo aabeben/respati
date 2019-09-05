@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Illuminate\Database\Capsule\Manager as DB;
+
 class Reservation extends CI_Controller {
 	public function __construct() {
         parent::__construct();
@@ -538,6 +540,53 @@ class Reservation extends CI_Controller {
 			
 			$this->session->set_flashdata('state', 'updated');
 			redirect(site_url('reservation/' . $this->input->get('back')));
+		}
+	}
+
+	public function serviceRsvpNotification() {
+		$data = json_encode(
+			DB::select(
+				DB::raw('
+					select 
+					(select count(*) as noti_approve from rsvp
+					where nik = "'.$this->session->identity.'"
+					and   notif_user = "A"
+					and   metode_pemesanan = "R"
+					and   st_approv = "true") as noti_reimbursement_approve,
+					(select count(*) as noti_approve from rsvp
+					where nik = "'.$this->session->identity.'"
+					and   notif_user = "A"
+					and   metode_pemesanan = "R"
+					and   st_approv = "reject") as noti_reimbursement_reject,
+					(select count(*) as noti_approve from rsvp
+					where nik = "'.$this->session->identity.'"
+					and   notif_user = "A"
+					and   metode_pemesanan = "H"
+					and   st_approv = "true") as noti_homebase_approve,
+					(select count(*) as noti_approve from rsvp
+					where nik = "'.$this->session->identity.'"
+					and   notif_user = "A"
+					and   metode_pemesanan = "H"
+					and   st_approv = "reject") as noti_homebase_reject,
+					(select count(*) as noti_approve from rsvp
+					where nik = "'.$this->session->identity.'"
+					and   notif_user = "A"
+					and   st_approv in ("true", "reject")) as total
+				')
+			)
+		);
+
+		print $data;
+	}
+
+	public function updateNoti($id = null) {
+		if (!$this->authenticationlibraries->active()) {
+			redirect('authentication/signin');
+		} else {
+			$data       	  = ReservationModel::where('notif_user', 'A')->where('nik', $this->session->identity)->update([
+				'notif_user' => 'Y'
+			]);
+			
 		}
 	}
 }
