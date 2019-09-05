@@ -287,11 +287,11 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                             <ul class="nav nav-tabs nav-digi">
-                                                <li class="active" sequence="1"><a data-toggle="tab" href="#data-party" onclick="validation(1)">1. Data Diri</a></li>
-                                                <li sequence="2"><a data-toggle="tab" href="#data-route" onclick="validation(2)">2. Keberangkatan & Tujuan</a></li>
-                                                <li sequence="3"><a data-toggle="tab" href="#data-flight" onclick="validation(3)">3. Maskapai</a></li>
-                                                <li sequence="4"><a data-toggle="tab" href="#data-date" onclick="validation(4)">4. Tanggal</a></li>
-                                                <li sequence="5"><a data-toggle="tab" href="#data-information" onclick="validation(5)">5. Kode Flight & Harga Tiket</a></li>
+                                                <li class="active" sequence="1"><a>1. Data Diri</a></li>
+                                                <li sequence="2"><a >2. Keberangkatan & Tujuan</a></li>
+                                                <li sequence="3"><a>3. Maskapai</a></li>
+                                                <li sequence="4"><a >4. Tanggal</a></li>
+                                                <li sequence="5"><a >5. Kode Flight & Harga Tiket</a></li>
                                             </ul>
                                         </div>
 
@@ -610,8 +610,8 @@
             break
 
             case 2:
-                let route_from = $('#route_from').val(),
-                    route_to = $('#route_to').val(),
+                let route_from = $('#route_from option:selected').text(),
+                    route_to = $('#route_to option:selected').text(),
 
                     textToShow = 'Keberangkatan dari ' + route_from + ', Tujuan ke ' + route_to
 
