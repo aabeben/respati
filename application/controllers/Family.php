@@ -24,6 +24,21 @@ class Family extends CI_Controller {
 		}
 	}
 
+	public function service() {
+		if (!$this->authenticationlibraries->active()) {
+			redirect('authentication/signin');
+		} else {
+			$data['content'] ='family/main'; 
+
+			if ($this->session->type === 'administrator')
+				$data['family']  = FamilyModel::with('employee')->orderBy('id', 'desc')->take(100)->get();
+			else
+				$data['family']  = FamilyModel::with('employee')->where('nik', $this->session->identity)->orderBy('id', 'desc')->take(100)->get();
+
+			print $data['family'];
+		}
+	}
+
 	public function form($id = null) {
 		if (!$this->authenticationlibraries->active()) {
 			redirect('authentication/signin');

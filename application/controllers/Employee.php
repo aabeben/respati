@@ -18,6 +18,17 @@ class Employee extends CI_Controller {
 		}
 	}
 
+	public function service() { 
+		if (!$this->authenticationlibraries->active()) {
+			redirect('authentication/signin');
+		} else {
+			$data['content'] ='employee/main'; 
+			$data['party'] 	 = PartyModel::with('family')->where('type', 'employee')->orderBy('id', 'desc')->take(100)->get();
+			
+			print $data['party'];
+		}
+	}
+
 	public function form($id = null) {
 		if (!$this->authenticationlibraries->active()) {
 			redirect('authentication/signin');

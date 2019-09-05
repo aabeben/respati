@@ -18,6 +18,17 @@ class Route extends CI_Controller {
 		}
 	}
 
+	public function service() {
+		if (!$this->authenticationlibraries->active()) {
+			redirect('authentication/signin');
+		} else {
+			$data['content'] ='flight/main'; 
+			$data['series']  = RouteModel::all();
+
+			print $data['series'];
+		}
+	}
+
 	public function form($id = null) {
 		if (!$this->authenticationlibraries->active()) {
 			redirect('authentication/signin');

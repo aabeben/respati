@@ -17,6 +17,17 @@ class Flight extends CI_Controller {
 			$this->load->view('components/layout', $data);
 		}
 	}
+	
+	public function service() {
+		if (!$this->authenticationlibraries->active()) {
+			redirect('authentication/signin');
+		} else {
+			$data['content'] ='flight/main'; 
+			$data['series']  = FlightModel::all();
+
+			print $data['series'];
+		}
+	}
 
 	public function form($id = null) {
 		if (!$this->authenticationlibraries->active()) {
