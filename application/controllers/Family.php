@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Illuminate\Database\Capsule\Manager as DB;
+
 class Family extends CI_Controller {
 	public function __construct() {
         parent::__construct();
@@ -42,6 +44,8 @@ class Family extends CI_Controller {
 				$data['family']->relationship = '';
 				$data['family']->tgl_lahir 	  = '';
 				$data['family']->gender    	  = '';
+				$data['family']->rsvp_limit   = '';
+				$data['family']->rsvp_flag	  = '';
 
 				$data['entity'] = 'create'; 
 			} else {
@@ -62,6 +66,8 @@ class Family extends CI_Controller {
 			$data->nik		 	= $this->input->post('nik');
 			$data->relationship = $this->input->post('relationship');
 			$data->tgl_lahir 	= $this->input->post('tgl_lahir');
+			$data->rsvp_flag 	= $this->input->post('rsvp_flag');
+			$data->rsvp_limit 	= $this->input->post('rsvp_limit');
 			$data->gender    	= $this->input->post('gender');
 			$data->save();
 
@@ -79,6 +85,8 @@ class Family extends CI_Controller {
 			$data->nik		 	= $this->input->post('nik');
 			$data->relationship = $this->input->post('relationship');
 			$data->tgl_lahir 	= $this->input->post('tgl_lahir');
+			$data->rsvp_flag 	= $this->input->post('rsvp_flag');
+			$data->rsvp_limit 	= $this->input->post('rsvp_limit');
 			$data->gender    	= $this->input->post('gender');
 			$data->save();
 			
@@ -96,5 +104,20 @@ class Family extends CI_Controller {
 			$this->session->set_flashdata('state', 'destroyed');
 			redirect(site_url('family'));
 		}
+	}
+
+	public function serviceRsvpLimit() {
+		$data = json_encode(
+			DB::select(
+				DB::raw('
+					select count(nama) as total from rsvp
+					where nik = "' . $this->input->get('nik') . '"
+					and   nama = "' . $this->input->get('nama') . '"
+					and   st_approv != "reject"
+				')
+			)
+		);
+
+		print $data;
 	}
 }

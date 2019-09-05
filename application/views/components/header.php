@@ -1,5 +1,5 @@
 <header class="main-header">
-    <a href="#" class="logo">
+    <a href="<?= site_url('dashboard') ?>" class="logo">
         <span class="logo-mini">
             <strong>R</strong>
         </span>

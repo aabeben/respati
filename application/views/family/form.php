@@ -34,7 +34,6 @@
                                     <input type="text" name="nama" value="<?= $family->nama ?>" class="form-control" required>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="row">
@@ -55,8 +54,8 @@
                                     <label>Hubungan <span class="text-danger">*</span></label>
                                     <select name="relationship" class="form-control" required>
                                         <option selected disabled>-- Pilih Hubungan --</option>
-                                        <option value="SPOUSE">Pasangan</option>
-                                        <option value="CHILD">Anak</option>
+                                        <option value="SPOUSE" <?php if ($family->relationship == 'SPOUSE') { print 'selected'; } ?>>Pasangan</option>
+                                        <option value="CHILD" <?php if ($family->relationship == 'CHILD') { print 'selected'; } ?>>Anak</option>
                                     </select>
                                 </div>
                             </div>
@@ -82,6 +81,27 @@
                             </div>
                         </div>
 
+                        <?php if ($this->session->type == 'administrator') { ?>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Berhak Reservasi?</label>
+                                        <select class="form-control" id="rsvp_flag" name="rsvp_flag">
+                                            <option value="true" <?php if ($family->rsvp_flag == 'true') { print 'selected'; } ?>>Berhak</option>
+                                            <option value="false" <?php if ($family->rsvp_flag == 'false') { print 'selected'; } ?>>Tidak Berhak</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="rsvp_limit_wrap" style="display: none;">
+                                    <div class="form-group">
+                                        <label>Jatah Reservasi per Tahun <span class="text-danger">*</span></label>
+                                        <input type="number" name="rsvp_limit" id="rsvp_limit" value="<?= $family->rsvp_limit ?>" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
@@ -97,3 +117,26 @@
         </div>
     </div>
 </section>
+
+<script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
+<script>
+    $('#rsvp_flag').change(function() {
+        rsvpFlag($(this).val())
+    })
+    
+    $(document).ready(function() {
+        rsvpFlag(<?= $family->rsvp_flag ?>)
+    })
+
+    function rsvpFlag(value) {
+        let thisVal = value
+        
+        if (thisVal == 'true' || thisVal == true) {
+            $('#rsvp_limit_wrap').show()
+            $('#rsvp_limit').val(0);
+        } else {
+            $('#rsvp_limit_wrap').hide()
+            $('#rsvp_limit').val(0);
+        }
+    }
+</script>

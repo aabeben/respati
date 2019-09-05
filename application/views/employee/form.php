@@ -132,6 +132,27 @@
                             </div>
                         </div>
 
+                        <?php if ($this->session->type == 'administrator') { ?>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Berhak Reservasi?</label>
+                                        <select class="form-control" id="rsvp_flag" name="rsvp_flag">
+                                            <option value="true" <?php if ($party->rsvp_flag == 'true') { print 'selected'; } ?>>Berhak</option>
+                                            <option value="false" <?php if ($party->rsvp_flag == 'false') { print 'selected'; } ?>>Tidak Berhak</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="rsvp_limit_wrap" style="display: none;">
+                                    <div class="form-group">
+                                        <label>Jatah Reservasi per Tahun <span class="text-danger">*</span></label>
+                                        <input type="number" name="rsvp_limit" id="rsvp_limit" value="<?= $party->rsvp_limit ?>" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
@@ -147,3 +168,25 @@
         </div>
     </div>
 </section>
+
+<script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
+<script>
+    $('#rsvp_flag').change(function() {
+        rsvpFlag($(this).val())
+    })
+    
+    $(document).ready(function() {
+        rsvpFlag(<?= $party->rsvp_flag ?>)
+    })
+
+    function rsvpFlag(value) {
+        let thisVal = value
+
+        if (thisVal == true || thisVal == 'true') {
+            $('#rsvp_limit_wrap').show();
+        } else {
+            $('#rsvp_limit_wrap').hide()
+            $('#rsvp_limit').val(0);
+        }
+    }
+</script>

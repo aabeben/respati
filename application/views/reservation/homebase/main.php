@@ -1,3 +1,4 @@
+<?php date_default_timezone_set("Asia/Jakarta"); ?>
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -326,7 +327,7 @@
                                                                             <option value="<?= $this->session->identity ?>" statusku="Add">Additional</option>
                                                                             <option disabled>---</option>
                                                                             <?php foreach ($family as $key => $data): ?>
-                                                                                <option familyIdentity="<?= $data->nama ?>" value="<?= $data->nik ?>" statusku="<?= $data->relationship ?>"><?= $data->nama ?></option>
+                                                                                <option familyIdentity="<?= $data->nama ?>" value="<?= $data->nik ?>" familyRsvpFlag="<?= $data->rsvp_flag ?>" familyRsvpLimit="<?= $data->rsvp_limit ?>" statusku="<?= $data->relationship ?>"><?= $data->nama ?></option>
                                                                             <?php endforeach; ?>
                                                                         </select>
                                                                     </div>
@@ -424,7 +425,7 @@
 
                                                                         <div class="form-group">
                                                                             <label>Waktu Keberangkatan</label>
-                                                                            <input type="time" class="form-control" id="waktu_berangkat" name="waktu_berangkat">
+                                                                            <input type="time" class="form-control" id="waktu_berangkat" value="<?= date('h:i') ?>" name="waktu_berangkat">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -434,12 +435,12 @@
                                                                     <div class="panel-body">
                                                                         <div class="form-group">
                                                                             <label>Tanggal Pulang</label>
-                                                                            <input type="text" class="form-control form-date" id="tgl_pulang" name="tgl_pulang">
+                                                                            <input type="text" class="form-control form-date" value="<?= date('m/d/Y') ?>" id="tgl_pulang" name="tgl_pulang">
                                                                         </div>
 
                                                                         <div class="form-group">
-                                                                            <label>Waktu Keberangkatan</label>
-                                                                            <input type="time" class="form-control" id="waktu_pulang" name="waktu_pulang">
+                                                                            <label>Waktu Kepulangan</label>
+                                                                            <input type="time" class="form-control" value="<?= date('h:i') ?>" id="waktu_pulang" name="waktu_pulang">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -461,13 +462,13 @@
                                                                     <div class="panel-body">
                                                                         <div class="form-group">
                                                                             <label>Kode Flight</label>
-                                                                            <input type="text" class="form-control" id="kode_flight" name="kode_flight">
+                                                                            <input type="text" class="form-control" id="kode_flight" name="kode_flight" required>
                                                                         </div>
 
                                                                         <label style="display: block;">Harga Tiket</label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon">Rp</span>
-                                                                            <input id="harga" type="number" class="form-control" name="harga">
+                                                                            <input id="harga" type="number" class="form-control" name="harga" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -679,13 +680,46 @@
             $('#information-return').hide()
             $('#date-return').hide()
             $('#return-wrapper').hide()
+
+            $('#harga_pulang').attr('required', false)
+            $('#kode_flight_pulang').attr('required', false)
         } else {
             $('#information-return').show()
             $('#date-return').show()
             $('#return-wrapper').show()
 
-
+            $('#harga_pulang').attr('required', true)
+            $('#kode_flight_pulang').attr('required', true)
         }
     }
-
 </script>   
+
+<script>
+    $(document).ready(function() {
+        let party = $('#party [familyIdentity]');
+
+        for (i=0; i<party.length; i++) {
+            let nama = party[i].getAttribute('familyIdentity'),
+                nik = party[i].value,
+                limit = party[i].getAttribute('familyRsvpLimit')
+
+            
+            requestLimitation(nama, nik, limit)
+        }
+    })
+
+    function requestLimitation(nama, nik, limit) {
+        $.ajax({
+            url: "<?= site_url('family/serviceRsvpLimit') ?>?nama="+ nama +"&nik=" + nik,
+            type: 'GET',
+            success: function(response) {
+                let used = parseInt(JSON.parse(response)[0].total),
+                    total = parseInt(limit) - used
+
+                if (total === 0) {
+                    $('#party [familyIdentity='+ nama +']').attr('disabled', true)
+                }
+            }
+        });
+    }
+</script>

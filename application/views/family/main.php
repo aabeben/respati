@@ -30,6 +30,10 @@
                                 <th>#</th>
                                 <th>Nama</th>
                                 <th>Anggota Keluarga Dari</th>
+                                <th>Jatah Reservasi</th>
+                                <?php if ($this->session->type != 'administrator') { ?>
+                                <th>Sisa Pemakaian Reservasi</th>
+                                <?php } ?>
                                 <th></th>
                             </tr>
                         </thead>
@@ -39,6 +43,11 @@
                                     <td><?= $key+1; ?></td>
                                     <td><strong><?= $data->nama; ?></strong></td>
                                     <td><strong><?= $data->employee->nama_lengkap; ?></strong> <small>NIK: <?= $data->employee->id_user; ?></small></td>
+                                    
+                                    <td><strong><?= $data->rsvp_limit; ?></strong></td>
+                                    <?php if ($this->session->type != 'administrator') { ?>
+                                    <td family-unique="<?= $data->id ?>" family-rsvp-limit="<?= $data->rsvp_limit ?>" family-name="<?= $data->nama ?>" family-nik="<?= $data->nik ?>"><small><i class="fa fa-spin fa-spinner"></i> Memuat..</small></td>
+                                    <?php } ?>
                                     <td>
                                         <a href="<?= site_url('family/form/' . $data->id) ?>" class="btn btn-warning btn-md" data-toggle="tooltip" title="Update">
                                             <i class="fa fa-pencil"></i>
@@ -57,3 +66,37 @@
         </div>
     </div>
 </section>
+
+<script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            let column = $('[family-unique]')
+
+            for (i=0; i<column.length; i++) {
+                let columnFamilyName = column[i].getAttribute('family-name'),
+                    columnFamilyUnique = column[i].getAttribute('family-unique'),
+                    columnFamilyRSVPLimit = column[i].getAttribute('family-rsvp-limit'),
+                    columnFamilyNIK  = column[i].getAttribute('family-nik')
+
+                requestLimitation(columnFamilyName, columnFamilyNIK, columnFamilyUnique, columnFamilyRSVPLimit)
+            }
+        }, 1000)
+    })
+
+    function requestLimitation(nama, nik, unique, limit) {
+        $.ajax({
+            url: "<?= site_url('family/serviceRsvpLimit') ?>?nama="+ nama +"&nik=" + nik,
+            type: 'GET',
+            success: function(response) {
+                let used = parseInt(JSON.parse(response)[0].total),
+                    total = parseInt(limit) - used
+
+                $('[family-unique='+ unique +']').html(
+                    '<a href="<?= site_url('reservation/reimbursement_reporting') ?>" style="color: black; text-decoration: underline; font-weight: bold;">' + total + '</a>'
+                )
+            }
+        });
+    }
+</script>

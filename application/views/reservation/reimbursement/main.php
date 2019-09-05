@@ -347,7 +347,7 @@
                                                                             <option value="<?= $this->session->identity ?>" statusku="Add">Additional</option>
                                                                             <option disabled>---</option>
                                                                             <?php foreach ($family as $key => $data): ?>
-                                                                                <option familyIdentity="<?= $data->nama ?>" value="<?= $data->nik ?>" statusku="<?= $data->relationship ?>"><?= $data->nama ?></option>
+                                                                                <option familyIdentity="<?= $data->nama ?>" value="<?= $data->nik ?>" familyRsvpFlag="<?= $data->rsvp_flag ?>" familyRsvpLimit="<?= $data->rsvp_limit ?>" statusku="<?= $data->relationship ?>"><?= $data->nama ?></option>
                                                                             <?php endforeach; ?>
                                                                         </select>
                                                                     </div>
@@ -445,7 +445,7 @@
 
                                                                         <div class="form-group">
                                                                             <label>Waktu Keberangkatan</label>
-                                                                            <input type="time" class="form-control" id="waktu_berangkat" name="waktu_berangkat">
+                                                                            <input type="time" class="form-control" id="waktu_berangkat" value="<?= date('h:i') ?>" name="waktu_berangkat">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -459,8 +459,8 @@
                                                                         </div>
 
                                                                         <div class="form-group">
-                                                                            <label>Waktu Keberangkatan</label>
-                                                                            <input type="time" class="form-control" id="waktu_pulang" name="waktu_pulang">
+                                                                            <label>Waktu Kepulangan</label>
+                                                                            <input type="time" class="form-control" id="waktu_pulang" value="<?= date('h:i') ?>" name="waktu_pulang">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -728,3 +728,33 @@
     }
 
 </script>   
+
+<script>
+    $(document).ready(function() {
+        let party = $('#party [familyIdentity]');
+
+        for (i=0; i<party.length; i++) {
+            let nama = party[i].getAttribute('familyIdentity'),
+                nik = party[i].value,
+                limit = party[i].getAttribute('familyRsvpLimit')
+
+            
+            requestLimitation(nama, nik, limit)
+        }
+    })
+
+    function requestLimitation(nama, nik, limit) {
+        $.ajax({
+            url: "<?= site_url('family/serviceRsvpLimit') ?>?nama="+ nama +"&nik=" + nik,
+            type: 'GET',
+            success: function(response) {
+                let used = parseInt(JSON.parse(response)[0].total),
+                    total = parseInt(limit) - used
+
+                if (total === 0) {
+                    $('#party [familyIdentity='+ nama +']').attr('disabled', true)
+                }
+            }
+        });
+    }
+</script>

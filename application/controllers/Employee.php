@@ -37,6 +37,8 @@ class Employee extends CI_Controller {
 				$data['party']->departemen   = '';
 				$data['party']->lokasi_kerja = '';
 				$data['party']->homebase 	 = '';
+				$data['party']->rsvp_limit   = '';
+				$data['party']->rsvp_flag	 = true;
 
 				$data['entity'] = 'create'; 
 			} else {
@@ -64,6 +66,8 @@ class Employee extends CI_Controller {
 			$data->departemen	= $this->input->post('departemen');
 			$data->lokasi_kerja	= $this->input->post('lokasi_kerja');
 			$data->homebase  	= $this->input->post('homebase');
+			$data->rsvp_flag 	= $this->input->post('rsvp_flag');
+			$data->rsvp_limit 	= $this->input->post('rsvp_limit');
 			$data->save();
 
 			$this->session->set_flashdata('state', 'stored');
@@ -87,6 +91,8 @@ class Employee extends CI_Controller {
 			$data->departemen	= $this->input->post('departemen');
 			$data->lokasi_kerja	= $this->input->post('lokasi_kerja');
 			$data->homebase  	= $this->input->post('homebase');
+			$data->rsvp_flag 	= $this->input->post('rsvp_flag');
+			$data->rsvp_limit 	= $this->input->post('rsvp_limit');
 			$data->save();
 			
 			$this->session->set_flashdata('state', 'updated');
