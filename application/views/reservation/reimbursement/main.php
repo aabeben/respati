@@ -618,7 +618,144 @@
                     $('.tab-pane[sequence='+step+']').addClass('fade in active')
 
                     return false
+                } else {
+                    let nama = $('#nama').val(),
+                        trip = $('input[name=typetrip]:checked').val() === 'single' ? 'Sekali Jalan' : 'Pulang Pergi',
+                        textToShow = 'Nama Pemesan: ' + nama + ', Tipe Perjalanan: ' + trip
+
+                    swal({
+                        title: "Apakah anda yakin?",
+                        text: textToShow,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-warning",
+                        confirmButtonText: "Tentu",
+                        cancelButtonText: "Tidak",
+                        closeOnConfirm: true,
+                        closeOnCancel: true
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            return true;
+                        } else {
+                            $('.nav-digi > li').removeClass('fade active')
+                            $('.tab-pane').removeClass('fade active')
+
+                            $('.nav-digi > li[sequence=1]').addClass('fade in active')
+                            $('.tab-pane[sequence=1]').addClass('fade in active')
+                        }
+                    });
                 }
+            break
+
+            case 2:
+                let route_from = $('#route_from').val(),
+                    route_to = $('#route_to').val(),
+
+                    textToShow = 'Keberangkatan dari ' + route_from + ', Tujuan ke ' + route_to
+
+                    swal({
+                        title: "Apakah anda yakin?",
+                        text: textToShow,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-warning",
+                        confirmButtonText: "Tentu",
+                        cancelButtonText: "Tidak",
+                        closeOnConfirm: true,
+                        closeOnCancel: true
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            return true;
+                        } else {
+                            $('.nav-digi > li').removeClass('fade active')
+                            $('.tab-pane').removeClass('fade active')
+
+                            $('.nav-digi > li[sequence=2]').addClass('fade in active')
+                            $('.tab-pane[sequence=2]').addClass('fade in active')
+                        }
+                    });
+            break
+
+            case 3:
+                let maskapai_berangkat = $('#maskapai_berangkat option:selected').text(),
+                    maskapai_pulang = $('#maskapai_pulang option:selected').text()
+
+                    let textToShown = ''
+
+
+                    let checkValue = $('input[name=typetrip]:checked').val();
+
+                    if (checkValue === 'single') {
+                        textToShown = 'Maskapai: ' + maskapai_berangkat
+                    } else {
+                        textToShown = 'Maskapai Berangkat: ' + maskapai_berangkat + ', Maskapai Pulang:' + maskapai_pulang
+                    }
+
+                    swal({
+                        title: "Apakah anda yakin?",
+                        text: textToShown,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-warning",
+                        confirmButtonText: "Tentu",
+                        cancelButtonText: "Tidak",
+                        closeOnConfirm: true,
+                        closeOnCancel: true
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            return true;
+                        } else {
+                            $('.nav-digi > li').removeClass('fade active')
+                            $('.tab-pane').removeClass('fade active')
+
+                            $('.nav-digi > li[sequence=3]').addClass('fade in active')
+                            $('.tab-pane[sequence=3]').addClass('fade in active')
+                        }
+                    });
+            break
+
+            case 4:
+                let tgl_berangkat = $('#tgl_berangkat').val(),
+                    waktu_berangkat = $('#waktu_berangkat').val(),
+                    tgl_pulang = $('#tgl_pulang').val(),
+                    waktu_pulang = $('#waktu_pulang').val()
+
+                    let textToShown2 = ''
+
+
+                    let checkValue2 = $('input[name=typetrip]:checked').val();
+
+                    if (checkValue2 === 'single') {
+                        textToShown2 = 'Tanggal & Waktu Berangkat: ' + tgl_berangkat + ', ' + waktu_berangkat
+                    } else {
+                        textToShown2 = 'Tanggal & Waktu Berangkat: ' + tgl_berangkat + ', ' + waktu_berangkat + ', Tanggal & Waktu Pulang: ' + tgl_pulang + ', ' + waktu_pulang
+                    }
+
+                    swal({
+                        title: "Apakah anda yakin?",
+                        text: textToShown2,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-warning",
+                        confirmButtonText: "Tentu",
+                        cancelButtonText: "Tidak",
+                        closeOnConfirm: true,
+                        closeOnCancel: true
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            return true;
+                        } else {
+                            $('.nav-digi > li').removeClass('fade active')
+                            $('.tab-pane').removeClass('fade active')
+
+                            $('.nav-digi > li[sequence=3]').addClass('fade in active')
+                            $('.tab-pane[sequence=3]').addClass('fade in active')
+                        }
+                    });
             break
 
             case 2:
@@ -656,13 +793,91 @@
                         if ($('#kode_flight').val() === '' || $('#kode_flight').val() === null || $('#harga').val() === '' || $('#harga').val() === null) {
                             swal("Error", 'Field tidak boleh kosong.', "error");
                             return false
+                        } else {
+                            let kode_flight_berangkat = $('#kode_flight').val(),
+                            harga_berangkat = $('#harga').val(),
+                            kode_flight_pulang = $('#kode_flight_pulang').val(),
+                            harga_pulang = $('#harga_pulang').val()
+
+                            let textToShown34 = ''
+
+                            let checkValue34 = $('input[name=typetrip]:checked').val();
+
+                            if (checkValue34 === 'single') {
+                                textToShown34 = 'Kode Flight & Harga: ' + kode_flight_berangkat + ', Rp' + harga_berangkat
+                            } else {
+                                textToShown34 = 'Kode Flight & Harga Berangkat: ' + kode_flight_berangkat + ', ' + harga_berangkat + ', Kode Flight & Harga Pulang: ' + kode_flight_pulang + ', Rp' + harga_pulang
+                            }
+
+                            swal({
+                                title: "Apakah anda yakin?",
+                                text: textToShown34,
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonClass: "btn-warning",
+                                confirmButtonText: "Tentu",
+                                cancelButtonText: "Tidak",
+                                closeOnConfirm: true,
+                                closeOnCancel: true
+                            },
+                            function(isConfirm) {
+                                if (isConfirm) {
+                                    return true;
+                                } else {
+                                    $('.nav-digi > li').removeClass('fade active')
+                                    $('.tab-pane').removeClass('fade active')
+
+                                    $('.nav-digi > li[sequence=3]').addClass('fade in active')
+                                    $('.tab-pane[sequence=3]').addClass('fade in active')
+                                }
+                            });
                         }
                     } else {
                         if ($('#kode_flight').val() === '' || $('#kode_flight').val() === null || $('#harga').val() === '' || $('#harga').val() === null || $('#kode_flight_pulang').val() === '' || $('#kode_flight_pulang').val() === null || $('#harga_pulang').val() === '' || $('#harga_pulang').val() === null) {
                             swal("Error", 'Field tidak boleh kosong.', "error");
                             return false
+                        } else {
+                            let kode_flight_berangkat = $('#kode_flight').val(),
+                            harga_berangkat = $('#harga').val(),
+                            kode_flight_pulang = $('#kode_flight_pulang').val(),
+                            harga_pulang = $('#harga_pulang').val()
+
+                            let textToShown35 = ''
+
+
+                            let checkValue35 = $('input[name=typetrip]:checked').val();
+
+                            if (checkValue35 === 'single') {
+                                textToShown35 = 'Kode Flight & Harga: ' + kode_flight_berangkat + ', Rp' + harga_berangkat
+                            } else {
+                                textToShown35 = 'Kode Flight & Harga Berangkat: ' + kode_flight_berangkat + ', ' + harga_berangkat + ', Kode Flight & Harga Pulang: ' + kode_flight_pulang + ', Rp' + harga_pulang
+                            }
+
+                            swal({
+                                title: "Apakah anda yakin?",
+                                text: textToShown35,
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonClass: "btn-warning",
+                                confirmButtonText: "Tentu",
+                                cancelButtonText: "Tidak",
+                                closeOnConfirm: true,
+                                closeOnCancel: true
+                            },
+                            function(isConfirm) {
+                                if (isConfirm) {
+                                    return true;
+                                } else {
+                                    $('.nav-digi > li').removeClass('fade active')
+                                    $('.tab-pane').removeClass('fade active')
+
+                                    $('.nav-digi > li[sequence=3]').addClass('fade in active')
+                                    $('.tab-pane[sequence=3]').addClass('fade in active')
+                                }
+                            });
                         }
                     }
+                    
                 }
             break
         }
