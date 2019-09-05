@@ -539,15 +539,117 @@
                                 <div class="modal-footer">
                                     <button id="btnPrev" type="button" class="btn btn-default" onclick="navigate('back')">Kembali</button>
                                     <button id="btnNext" type="button" class="btn btn-success" onclick="navigate('next')">Berikutnya</button>
-                                    <button id="btnSubmit" type="submit" class="btn btn-success" style="display: none;">Simpan</button>
+                                    <button id="btnSubmit" type="button" onClick="showModalLast()"  class="btn btn-success" style="display: none;">Simpan</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
     </div>
+
+    <div id="modalLast" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Konfirmasi</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <label><strong>Tipe Perjalanan</strong></label>
+                            <h5 id="show_typetrip" style="margin-top: 0px;">Pulang Pergi</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <label><strong>Nama Pemesan</strong></label>
+                            <h5 id="show_nama" style="margin-top: 0px;"></h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <label><strong>Rute Keberangkatan</strong></label>
+                            <h5 id="show_route_from" style="margin-top: 0px;"></h5>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <label><strong>Rute Tujuan</strong></label>
+                            <h5 id="show_route_to" style="margin-top: 0px;"></h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <label><strong>Maskapai Berangkat</strong></label>
+                            <h5 id="show_maskapai_berangkat" style="margin-top: 0px;"></h5>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <label><strong>Maskapai Pulang</strong></label>
+                            <h5 id="show_maskapai_pulang" style="margin-top: 0px;"></h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label><strong>Tanggal Berangkat</strong></label>
+                            <h5 id="show_tgl_berangkat" style="margin-top: 0px;"></h5>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label><strong>Waktu Berangkat</strong></label>
+                            <h5 id="show_waktu_berangkat" style="margin-top: 0px;"></h5>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label><strong>Tanggal Pulang</strong></label>
+                            <h5 id="show_tgl_pulang" style="margin-top: 0px;"></h5>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label><strong>Waktu Pulang</strong></label>
+                            <h5 id="show_waktu_pulang" style="margin-top: 0px;"></h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label><strong>Kode Flight Berangkat</strong></label>
+                            <h5 id="show_kode_flight_berangkat" style="margin-top: 0px;"></h5>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label><strong>Harga Tiket</strong></label>
+                            <h5 id="show_harga_berangkat" style="margin-top: 0px;"></h5>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label><strong>Kode Flight Pulang</strong></label>
+                            <h5 id="show_kode_flight_pulang" style="margin-top: 0px;"></h5>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <label><strong>Harga Tiket Pulang</strong></label>
+                            <h5 id="show_harga_pulang" style="margin-top: 0px;"></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </form>
 
     <script>
     </script>
@@ -604,6 +706,56 @@
 
         checkRadio()
     })
+
+    function showModalLast() {
+        let trip = $('input[name=typetrip]:checked').val() === 'single' ? 'Sekali Jalan' : 'Pulang Pergi',
+            nama = $('#nama').val(),
+            route_from = $('#route_from option:selected').text(),
+            route_to   = $('#route_to option:selected').text(),
+            maskapai_berangkat = $('#maskapai_berangkat option:selected').text(),
+            maskapai_pulang = $('#maskapai_pulang option:selected').text()
+
+            let tgl_berangkat = $('#tgl_berangkat').val(),
+                waktu_berangkat = $('#waktu_berangkat').val(),
+                tgl_pulang = $('#tgl_pulang').val(),
+                waktu_pulang = $('#waktu_pulang').val()
+
+            let kode_flight_berangkat = $('#kode_flight').val(),
+                harga_berangkat = $('#harga').val(),
+                kode_flight_pulang = $('#kode_flight_pulang').val(),
+                harga_pulang = $('#harga_pulang').val()
+
+        $('#show_typetrip').html(trip)
+        $('#show_nama').html(nama)
+        $('#show_route_from').html(route_from)
+        $('#show_route_to').html(route_to)
+        $('#show_tgl_berangkat').html(tgl_berangkat)
+        $('#show_waktu_berangkat').html(waktu_berangkat)
+        $('#show_maskapai_berangkat').html(maskapai_berangkat)
+        $('#show_kode_flight_berangkat').html(kode_flight_berangkat)
+        $('#show_harga_berangkat').html(harga_berangkat)
+
+        if (trip !== 'Sekali Jalan') {
+            $('#show_maskapai_pulang').html(maskapai_pulang)
+
+            $('#show_tgl_pulang').html(tgl_pulang)
+            $('#show_waktu_pulang').html(waktu_pulang)
+
+
+        $('#show_kode_flight_pulang').html(kode_flight_pulang)
+        $('#show_harga_pulang').html(harga_pulang)
+        } else {
+            $('#show_maskapai_pulang').html('-')
+            $('#show_tgl_pulang').html('-')
+            $('#show_waktu_pulang').html('-')
+
+
+            $('#show_kode_flight_pulang').html('-')
+            $('#show_harga_pulang').html('-')
+        }
+        
+        $('#modalLast').modal('show')
+    }
 
     function validation(step) {
         switch(parseInt(step)) {
