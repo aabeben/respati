@@ -455,7 +455,7 @@
                                                                     <div class="panel-body">
                                                                         <div class="form-group">
                                                                             <label>Tanggal Pulang</label>
-                                                                            <input type="text" class="form-control form-date" id="tgl_pulang" name="tgl_pulang">
+                                                                            <input type="text" class="form-control form-date" id="tgl_pulang" value="<?= date('m/d/Y') ?>" name="tgl_pulang">
                                                                         </div>
 
                                                                         <div class="form-group">
@@ -1141,10 +1141,17 @@
             $('#information-return').hide()
             $('#date-return').hide()
             $('#return-wrapper').hide()
+
+            $('#harga_pulang').attr('required', false)
+            $('#kode_flight_pulang').attr('required', false)
         } else {
             $('#information-return').show()
             $('#date-return').show()
             $('#return-wrapper').show()
+
+
+            $('#harga_pulang').attr('required', true)
+            $('#kode_flight_pulang').attr('required', true)
 
         }
     }
