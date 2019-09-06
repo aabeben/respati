@@ -507,11 +507,10 @@
                     </div>
                 </div>
             </div>
-    </div>
 
     <div id="modalLast" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <div class="modal-content modal-lg">
+            <div class="modal-content modal-md">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Konfirmasi</h4>
@@ -608,6 +607,9 @@
             </div>
         </div>
     </div>
+    </div>
+
+    
 
 
     </form>
@@ -731,6 +733,9 @@
 
                     return false
                 } else {
+                    $('#btnPrev').attr('disabled', true)
+                    $('#btnNext').attr('disabled', true)
+
                     let nama = $('#nama').val(),
                         trip = $('input[name=typetrip]:checked').val() === 'single' ? 'Sekali Jalan' : 'Pulang Pergi',
                         textToShow = 'Nama Pemesan: ' + nama + ', Tipe Perjalanan: ' + trip
@@ -748,8 +753,13 @@
                     },
                     function(isConfirm) {
                         if (isConfirm) {
+                            $('#btnPrev').attr('disabled', false)
+                            $('#btnNext').attr('disabled', false)
                             return true;
                         } else {
+
+                            $('#btnPrev').attr('disabled', false)
+                            $('#btnNext').attr('disabled', false)
                             $('.nav-digi > li').removeClass('fade active')
                             $('.tab-pane').removeClass('fade active')
 
@@ -761,6 +771,9 @@
             break
 
             case 2:
+
+            $('#btnPrev').attr('disabled', true)
+            $('#btnNext').attr('disabled', true)
                 let route_from = $('#route_from option:selected').text(),
                     route_to = $('#route_to option:selected').text(),
 
@@ -779,8 +792,14 @@
                     },
                     function(isConfirm) {
                         if (isConfirm) {
+
+                            $('#btnPrev').attr('disabled', false)
+                            $('#btnNext').attr('disabled', false)
                             return true;
                         } else {
+
+                            $('#btnNext').attr('disabled', false)
+                            $('#btnPrev').attr('disabled', false)
                             $('.nav-digi > li').removeClass('fade active')
                             $('.tab-pane').removeClass('fade active')
 
@@ -791,6 +810,9 @@
             break
 
             case 3:
+
+            $('#btnPrev').attr('disabled', true)
+            $('#btnNext').attr('disabled', true)
                 let maskapai_berangkat = $('#maskapai_berangkat option:selected').text(),
                     maskapai_pulang = $('#maskapai_pulang option:selected').text()
 
@@ -818,8 +840,14 @@
                     },
                     function(isConfirm) {
                         if (isConfirm) {
+
+                            $('#btnNext').attr('disabled', false)
+                            $('#btnPrev').attr('disabled', false)
                             return true;
                         } else {
+
+                            $('#btnNext').attr('disabled', false)
+                            $('#btnPrev').attr('disabled', false)
                             $('.nav-digi > li').removeClass('fade active')
                             $('.tab-pane').removeClass('fade active')
 
@@ -830,6 +858,9 @@
             break
 
             case 4:
+                $('#btnPrev').attr('disabled', true)
+                $('#btnNext').attr('disabled', true)
+
                 let tgl_berangkat = $('#tgl_berangkat').val(),
                     waktu_berangkat = $('#waktu_berangkat').val(),
                     tgl_pulang = $('#tgl_pulang').val(),
@@ -859,8 +890,12 @@
                     },
                     function(isConfirm) {
                         if (isConfirm) {
+                            $('#btnNext').attr('disabled', false)
+                            $('#btnPrev').attr('disabled', false)
                             return true;
                         } else {
+                            $('#btnNext').attr('disabled', false)
+                            $('#btnPrev').attr('disabled', false)
                             $('.nav-digi > li').removeClass('fade active')
                             $('.tab-pane').removeClass('fade active')
 
@@ -871,6 +906,8 @@
             break
 
             case 5:
+                $('#btnNext').attr('disabled', true)
+                $('#btnPrev').attr('disabled', true)
                 let kode_flight_berangkat = $('#kode_flight').val(),
                     harga_berangkat = $('#harga').val(),
                     kode_flight_pulang = $('#kode_flight_pulang').val(),
@@ -900,8 +937,12 @@
                     },
                     function(isConfirm) {
                         if (isConfirm) {
+                            $('#btnNext').attr('disabled', false)
+                            $('#btnPrev').attr('disabled', false)
                             return true;
                         } else {
+                            $('#btnNext').attr('disabled', false)
+                            $('#btnPrev').attr('disabled', false)
                             $('.nav-digi > li').removeClass('fade active')
                             $('.tab-pane').removeClass('fade active')
 
