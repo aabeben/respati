@@ -291,7 +291,6 @@
                                                 <li sequence="2"><a >2. Keberangkatan & Tujuan</a></li>
                                                 <li sequence="3"><a>3. Maskapai</a></li>
                                                 <li sequence="4"><a >4. Tanggal</a></li>
-                                                <li sequence="5"><a >5. Kode Flight & Harga Tiket</a></li>
                                             </ul>
                                         </div>
 
@@ -448,50 +447,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div id="data-information" class="tab-pane fade" sequence="5">
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                    <h3><strong>Kode Flight & Harga</strong></h3>
-                                                                </div>
-
-                                                                <div id="information-depart">
-                                                                    <h5 style="padding: 10px 15px; padding-bottom: 0; margin-bottom: 0px;">Berangkat</h5>
-                                                                    <div class="panel-body">
-                                                                        <div class="form-group">
-                                                                            <label>Kode Flight</label>
-                                                                            <input type="text" class="form-control" id="kode_flight" name="kode_flight" required>
-                                                                        </div>
-
-                                                                        <label style="display: block;">Harga Tiket</label>
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-addon">Rp</span>
-                                                                            <input id="harga" type="number" class="form-control" name="harga" required>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div id="information-return" style="display: none;">
-                                                                    <h5 style="padding: 10px 15px; padding-bottom: 0; margin-bottom: 0px;">Pulang</h5>
-                                                                    <div class="panel-body">
-                                                                        <div class="form-group">
-                                                                            <label>Kode Flight</label>
-                                                                            <input type="text" class="form-control" id="kode_flight_pulang" name="kode_flight_pulang">
-                                                                        </div>
-
-                                                                        <label style="display: block;">Harga Tiket</label>
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-addon">Rp</span>
-                                                                            <input id="harga_pulang" type="number" class="form-control" name="harga_pulang">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -574,28 +529,6 @@
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <label><strong>Waktu Pulang</strong></label>
                             <h5 id="show_waktu_pulang" style="margin-top: 0px;"></h5>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <label><strong>Kode Flight Berangkat</strong></label>
-                            <h5 id="show_kode_flight_berangkat" style="margin-top: 0px;"></h5>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <label><strong>Harga Tiket</strong></label>
-                            <h5 id="show_harga_berangkat" style="margin-top: 0px;"></h5>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <label><strong>Kode Flight Pulang</strong></label>
-                            <h5 id="show_kode_flight_pulang" style="margin-top: 0px;"></h5>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <label><strong>Harga Tiket Pulang</strong></label>
-                            <h5 id="show_harga_pulang" style="margin-top: 0px;"></h5>
                         </div>
                     </div>
                 </div>
@@ -1034,7 +967,7 @@
             }
         }
 
-        if (parseInt(list) === 5) {
+        if (parseInt(list) === 4) {
             $('#btnNext').hide()
             $('#btnSubmit').show()
         } else {
