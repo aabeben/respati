@@ -56,7 +56,8 @@
                                         <th>Rute</th>
                                         <th>Tanggal</th>
                                         <th>Kode Flight</th>
-                                        <th>Harga Tiket</th>
+                                        <th>Harga Tiket</th>¸
+                                        <th>Boarding Pass</th>¸
                                         <th>Status</th>
                                         <th></th>
                                     </tr>
@@ -71,7 +72,14 @@
                                             <td><strong><?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>) - <?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>)</strong></td>
                                             <td><strong><?= $data->tgl_berangkat; ?>, <?= $data->waktu_berangkat; ?></strong></td>
                                             <td><strong><?= $data->kode_flight; ?></strong></td>
-                                            <td><strong>Rp<?= number_format($data->harga); ?></strong></td>
+                                            <td><strong>Rp<?= $data->harga; ?></strong></td>
+                                            <td>
+                                                <?php if ($data->document === null || $data->document === '') { ?>
+                                                    <span class="text-danger">-</span>
+                                                <?php } else { ?>
+                                                    <a href="<?= base_url() ?>/assets/storage/image/boarding/<?= $data->document ?>" target="_blank" class="text-success" style="color: #1d9b95;"><strong>Klik <i class="fa fa-picture-o"></i></strong></a>
+                                                <?php } ?>
+                                            </td>
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
                                                     <span class="label label-primary">Menunggu Approval</span>
@@ -85,6 +93,10 @@
                                             <?php if ($data->st_approv == 'false') { ?>
                                                 <a href="<?= site_url('reservation/destroy/' . $data->id) ?>" class="btn btn-warning btn-md" data-toggle="tooltip" title="Batalkan Permintaan Reimbursement">
                                                     <i class="fa fa-times"></i>
+                                                </a>
+
+                                                <a class="btn btn-info btn-md" style="color: white;" onClick="changeAttachment(<?= $data->id ?>, '<?= base_url() ?>/assets/storage/image/boarding/<?= $data->document ?>', '<?= $data->nama ?>')" title="Ubah Boarding Pass">
+                                                    Ubah Boarding Pass
                                                 </a>
                                             <?php } ?>
                                             </td>
@@ -121,7 +133,7 @@
                                                 <td><strong><?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>) - <?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>)</strong></td>
                                                 <td><strong><?= $data->tgl_berangkat; ?>, <?= $data->waktu_berangkat; ?></strong></td>
                                                 <td><strong><?= $data->kode_flight; ?></strong></td>
-                                                <td><strong>Rp<?= number_format($data->harga); ?></strong></td>
+                                                <td><strong>Rp<?= $data->harga; ?></strong></td>
                                                 <td>
                                                     <?php if ($data->document === null || $data->document === '') { ?>
                                                         <span class="text-danger">-</span>
@@ -194,7 +206,7 @@
                                             <td><strong><?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>) - <?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>)</strong></td>
                                             <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_berangkat; ?></strong></td>
                                             <td><strong><?= $data->kode_flight; ?></strong></td>
-                                            <td><strong>Rp<?= number_format($data->harga_pulang); ?></strong></td>
+                                            <td><strong>Rp<?= $data->harga_pulang; ?></strong></td>
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
                                                     <span class="label label-primary">Menunggu Approval</span>
@@ -209,6 +221,10 @@
                                             <?php if ($data->st_approv == 'false') { ?>
                                                 <a href="<?= site_url('reservation/destroy/' . $data->id) ?>" class="btn btn-warning btn-md" data-toggle="tooltip" title="Batalkan Permintaan Reimbursement">
                                                     <i class="fa fa-times"></i>
+                                                </a>
+
+                                                <a class="btn btn-info btn-md" style="color: white;" onClick="changeAttachment(<?= $data->id ?>, '<?= base_url() ?>/assets/storage/image/boarding/<?= $data->document ?>', '<?= $data->nama ?>')" title="Ubah Boarding Pass">
+                                                    Ubah Boarding Pass
                                                 </a>
                                             <?php } ?>
                                             </td>
@@ -245,7 +261,7 @@
                                             <td><strong><?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>) - <?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>)</strong></td>
                                             <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_berangkat; ?></strong></td>
                                             <td><strong><?= $data->kode_flight; ?></strong></td>
-                                            <td><strong>Rp<?= number_format($data->harga_pulang); ?></strong></td>
+                                            <td><strong>Rp<?= $data->harga_pulang; ?></strong></td>
                                             <td>
                                                 <?php if ($data->document === null || $data->document === '') { ?>
                                                     <span class="text-danger">Tidak ada dokumen boarding pass.</span>
@@ -285,6 +301,40 @@
                         <?php } ?>
                     </div>
                 </div>
+
+                <div id="mdlAttachment" class="modal fade" role="dialog" style="margin-top: -125px;">
+                    <div class="modal-dialog" >
+                        <div class="modal-content">
+                        <form method="POST" action="<?= site_url('reservation/attachmentChange') ?>" enctype='multipart/form-data'>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><i class="fa fa-picture-o" style="margin-right: 10px;"></i> Edit Boarding Pass <strong id="rsvp_name_"></strong></h4>
+                            </div>
+                            
+                            <div class="modal-body">
+                                <input type="hidden" id="rsvp_id" name="rsvp_id" class="form-control">
+                                
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <h6><strong>Boarding Pass saat ini</strong></h6>
+                                        <img src="" id="rsvp_attachment" class="img-responsive">
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <h6><strong>Upload Boarding Pass terbaru</strong></h6>
+                                        <input type="file" name="boarding" id="boarding"> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Upload</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
 
                 <div id="modal-reimbursement" class="modal fade" role="dialog">
                     <form method="POST" action="<?= site_url('reservation/store') ?>" enctype='multipart/form-data'>
@@ -488,7 +538,7 @@
                                                                         <label style="display: block;">Harga Tiket</label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon">Rp</span>
-                                                                            <input id="harga" type="number" class="form-control" name="harga">
+                                                                            <input id="harga" onchange="setTwoNumberDecimal()" type="text" class="form-control niw" name="harga">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -504,7 +554,7 @@
                                                                         <label style="display: block;">Harga Tiket</label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon">Rp</span>
-                                                                            <input id="harga_pulang" type="number" class="form-control" name="harga_pulang">
+                                                                            <input id="harga_pulang" type="text" class="form-control niw2" name="harga_pulang">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -657,6 +707,16 @@
 </section>
 
 <script src="<?= base_url() ?>assets/vendor/jquery/dist/jquery.min.js"></script>
+
+<script>
+    function changeAttachment(rsvp_id, attachment, rsvp_name) {
+        $('#mdlAttachment').modal('show')
+
+        $('#rsvp_id').val(rsvp_id)
+        $('#rsvp_name_').html(rsvp_name)
+        $('#rsvp_attachment').attr('src', attachment)
+    }
+</script>
 <script>
     let flaggedFamily = <?= $flagged_family ?>
 

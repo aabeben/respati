@@ -392,4 +392,8 @@ $(function () {
     $(window).on("resize", function () {
         $('.modal:visible').each(centerModal);
     });
+
+    const anElement = new AutoNumeric('input.niw', 0);
+    const sds = new AutoNumeric('input.niw2', 0);
+
 })

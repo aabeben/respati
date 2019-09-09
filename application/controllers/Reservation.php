@@ -455,6 +455,21 @@ class Reservation extends CI_Controller {
 		}
 	}
 
+	public function attachmentChange() {
+		$target_dir  = "./assets/storage/image/boarding/";
+		$file_name = 'BOARDING-PASS-' . date('YmdHis') . '.' . pathinfo($_FILES['boarding']['name'], PATHINFO_EXTENSION);
+		$target_file = $target_dir . $file_name;
+
+		if (move_uploaded_file($_FILES["boarding"]["tmp_name"], $target_file)) {
+			$data          	= ReservationModel::where('id', $this->input->post('rsvp_id'))->first();
+			$data->document = $file_name;
+			$data->save();
+
+			$this->session->set_flashdata('state', 'stored');
+			redirect(site_url('reservation/reimbursement'));
+		}
+	}
+
 	public function store() {
 		if (!$this->authenticationlibraries->active()) {
 			redirect('authentication/signin');

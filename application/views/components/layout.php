@@ -39,11 +39,15 @@
     <script src="<?= base_url() ?>assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/fastclick/lib/fastclick.js"></script>
+    <script src="https://unpkg.com/autonumeric@4.5.4/dist/autoNumeric.min.js"></script>
     <script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
     <script src="<?= base_url() ?>assets/vendor/adminlte/js/adminlte.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/adminlte/js/init.js"></script>
 
     <script>
+        function setTwoNumberDecimal(event) {
+            this.value = parseFloat(this.value).toFixed(2);
+        }
         $(document).ready(function() {
             $.ajax({
                 url: "<?= site_url('reservation/serviceRsvpNotification') ?>",
