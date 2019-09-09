@@ -2,7 +2,7 @@
     <section class="sidebar">
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="http://homebase.ktravel.id/assets/themes/adminlte/blank/images/kinarya_logo.png" alt="User Image">
+                <img src="<?= base_url() ?>assets/storage/image/kinarya_logo.png" alt="User Image">
             </div>
 
             <div class="pull-left info">
