@@ -54,7 +54,7 @@
             </li>
         <?php } ?>
 
-        <?php if ($this->session->type === 'employee') { ?>
+        <?php if ($this->session->type === 'employee_takeout') { ?>
             <li class="header">Data Master</li>
             <li class="treeview <?php if($this->uri->uri_string() == 'employee' || $this->uri->uri_string() == 'family') { print 'active'; } ?>">
                 <a href="#">
