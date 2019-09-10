@@ -57,8 +57,6 @@
                                         <th>Maskapai</th>
                                         <th>Rute</th>
                                         <th>Tanggal</th>
-                                        <th>Kode Flight</th>
-                                        <th>Harga Tiket</th>
                                         <th>Status</th>
                                         <th></th>
                                     </tr>
@@ -72,8 +70,6 @@
                                             <td><strong><?= $data->flightDepart->flight; ?></strong></td>
                                             <td><strong><?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>) - <?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>)</strong></td>
                                             <td><strong><?= $data->tgl_berangkat; ?>, <?= $data->waktu_berangkat; ?></strong></td>
-                                            <td><strong><?= $data->kode_flight; ?></strong></td>
-                                            <td><strong>Rp<?= number_format($data->harga); ?></strong></td>
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
                                                     <span class="label label-primary">Menunggu Approval</span>
@@ -105,8 +101,6 @@
                                         <th>Maskapai</th>
                                         <th>Rute</th>
                                         <th>Tanggal</th>
-                                        <th>Kode Flight</th>
-                                        <th>Harga Tiket</th>
                                         <th>Tgl Pengajuan</th>
                                         <th>Status</th>
                                         <th></th>
@@ -121,8 +115,6 @@
                                             <td><strong><?= $data->flightDepart->flight; ?></strong></td>
                                             <td><strong><?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>) - <?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>)</strong></td>
                                             <td><strong><?= $data->tgl_berangkat; ?>, <?= $data->waktu_berangkat; ?></strong></td>
-                                            <td><strong><?= $data->kode_flight; ?></strong></td>
-                                            <td><strong>Rp<?= number_format($data->harga); ?></strong></td>
                                             <td><?= $data->created_at ?></td>
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
@@ -171,8 +163,6 @@
                                         <th>Maskapai</th>
                                         <th>Rute</th>
                                         <th>Tanggal Pulang</th>
-                                        <th>Kode Flight</th>
-                                        <th>Harga Tiket</th>
                                         <th>Status</th>
                                         <th></th>
                                     </tr>
@@ -186,8 +176,6 @@
                                             <td><strong><?= $data->flightReturn->flight; ?></strong></td>
                                             <td><strong><?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>) - <?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>)</strong></td>
                                             <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_berangkat; ?></strong></td>
-                                            <td><strong><?= $data->kode_flight; ?></strong></td>
-                                            <td><strong>Rp<?= number_format($data->harga_pulang); ?></strong></td>
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
                                                     <span class="label label-primary">Menunggu Approval</span>
