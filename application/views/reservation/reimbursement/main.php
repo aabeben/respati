@@ -323,6 +323,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <h6><strong>Upload Boarding Pass terbaru</strong></h6>
                                         <input type="file" name="boarding" id="boarding"> 
+                                        <small class="text-danger">File maximal 5mb.</small>
                                     </div>
                                 </div>
                             </div>
@@ -575,6 +576,7 @@
                                                                     <div class="form-group">
                                                                         <label>Boarding Pass</label>
                                                                         <input type="file" class="form-control" id="boarding" name="boarding" required>
+                                                                        <small class="text-danger">File maximal 5mb.</small>
                                                                     </div>
                                                                 </div>
                                                             </div>
