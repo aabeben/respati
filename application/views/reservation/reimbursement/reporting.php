@@ -134,6 +134,7 @@
                                         <th>Tanggal</th>
                                         <th>Kode Flight</th>
                                         <th>Harga Tiket</th>
+                                        <th>Bukti Transfer</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -148,6 +149,13 @@
                                             <td><strong><?= $data->tgl_berangkat; ?>, <?= $data->waktu_berangkat; ?></strong></td>
                                             <td><strong><?= $data->kode_flight; ?></strong></td>
                                             <td><strong>Rp<?= $data->harga; ?></strong></td>
+                                            <td>
+                                                <?php if ($data->namaberkas === null || $data->namaberkas === '') { ?>
+                                                    <span class="text-danger">-</span>
+                                                <?php } else { ?>
+                                                    <a href="<?= base_url() ?>/assets/storage/image/proof/<?= $data->namaberkas ?>" target="_blank" class="text-success" style="color: #1d9b95;"><strong>Klik <i class="fa fa-picture-o"></i></strong></a>
+                                                <?php } ?>
+                                            </td>
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
                                                     <span class="label label-primary">Menunggu Approval</span>
@@ -188,6 +196,7 @@
                                         <th>Tanggal Pulang</th>
                                         <th>Kode Flight</th>
                                         <th>Harga Tiket</th>
+                                        <th>Bukti Transfer</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -202,6 +211,13 @@
                                             <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_berangkat; ?></strong></td>
                                             <td><strong><?= $data->kode_flight; ?></strong></td>
                                             <td><strong>Rp<?= $data->harga_pulang; ?></strong></td>
+                                            <td>
+                                                <?php if ($data->namaberkas === null || $data->namaberkas === '') { ?>
+                                                    <span class="text-danger">-</span>
+                                                <?php } else { ?>
+                                                    <a href="<?= base_url() ?>/assets/storage/image/proof/<?= $data->namaberkas ?>" target="_blank" class="text-success" style="color: #1d9b95;"><strong>Klik <i class="fa fa-picture-o"></i></strong></a>
+                                                <?php } ?>
+                                            </td>
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
                                                     <span class="label label-primary">Menunggu Approval</span>

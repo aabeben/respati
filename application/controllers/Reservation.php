@@ -544,17 +544,32 @@ class Reservation extends CI_Controller {
 		}
 	}
 
-
 	public function approval($id = null) {
 		if (!$this->authenticationlibraries->active()) {
 			redirect('authentication/signin');
 		} else {
-			$data       	 = ReservationModel::where('id', $id)->first();
-			$data->st_approv = $this->input->get('action');
-			$data->save();
-			
-			$this->session->set_flashdata('state', 'updated');
-			redirect(site_url('reservation/' . $this->input->get('back')));
+			if (isset($_FILES['file_transfer'])) {
+				$target_dir  = "./assets/storage/image/proof/";
+				$file_name = 'PROOF-DOCUMENT-' . date('YmdHis') . '.' . pathinfo($_FILES['file_transfer']['name'], PATHINFO_EXTENSION);
+				$target_file = $target_dir . $file_name;
+
+				if (move_uploaded_file($_FILES["file_transfer"]["tmp_name"], $target_file)) {
+					$data       	   = ReservationModel::where('id', $id)->first();
+					$data->st_approv   = $this->input->get('action');
+					$data->namaberkas = $file_name;
+					$data->save();
+				
+					$this->session->set_flashdata('state', 'updated');
+					redirect(site_url('reservation/' . $this->input->get('back')));
+				}
+			} else {
+				$data       	 = ReservationModel::where('id', $id)->first();
+				$data->st_approv = $this->input->get('action');
+				$data->save();
+				
+				$this->session->set_flashdata('state', 'updated');
+				redirect(site_url('reservation/' . $this->input->get('back')));
+			}
 		}
 	}
 

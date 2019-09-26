@@ -154,7 +154,7 @@
 
                                                 <td>
                                                     <?php if ($data->st_approv == 'false') { ?>
-                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=true&back=reimbursement" class="btn btn-success text-white btn-md" style="color: white;" data-toggle="tooltip" title="Approve">
+                                                        <a href="#" onClick="proofDocument(<?= $data->id ?>, 'true', 'reimbursement')" class="btn btn-success text-white btn-md" style="color: white;" data-toggle="tooltip" title="Approve">
                                                         <i class="fa fa-check"></i> Approve
                                                     </a>
                                                     <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=reject&back=reimbursement" class="btn btn-danger btn-md" data-toggle="tooltip" title="Reject">
@@ -281,10 +281,11 @@
                                             </td>
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
-                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=true&back=reimbursement" class="btn btn-success text-white btn-md" style="color: white;" data-toggle="tooltip" title="Approve">
+                                                    <a href="#" onClick="proofDocument(<?= $data->id ?>, 'true', 'reimbursement')" class="btn btn-success text-white btn-md" style="color: white;" data-toggle="tooltip" title="Approve">
                                                         <i class="fa fa-check"></i> Approve
                                                     </a>
-                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=reject&back=reimbursement" class="btn btn-danger btn-md" data-toggle="tooltip" title="Reject">
+                                                    
+                                                    <a href="<?= site_url('reservation/approval/' . $data->id) ?>?action=true&back=reimbursement" class="btn btn-danger btn-md" data-toggle="tooltip" title="Reject">
                                                         <i class="fa fa-times"></i> Reject
                                                     </a>
                                                 <?php } else if ($data->st_approv == 'reject') { ?>
@@ -299,6 +300,35 @@
                             </table>
                         </div>
                         <?php } ?>
+                    </div>
+                </div>
+
+                <div id="mdlProofDocument" class="modal fade" role="dialog" style="margin-top: -125px;">
+                    <div class="modal-dialog" >
+                        <div class="modal-content">
+                        <form method="POST" id="proofDocumentForm" enctype='multipart/form-data'>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"><i class="fa fa-picture-o" style="margin-right: 10px;"></i> Upload Bukti Transfer</h4>
+                            </div>
+                            
+                            <div class="modal-body">
+                                <input type="hidden" id="rsvp_id" name="rsvp_id" class="form-control">
+                                
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <h6><strong>Upload Bukti Transfer</strong></h6>
+                                        <input type="file" name="file_transfer" id="file_transfer" required> 
+                                        <small class="text-danger">File maximal 5mb.</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Upload</button>
+                            </div>
+                        </div>
+                        </form>
                     </div>
                 </div>
 
@@ -720,6 +750,13 @@
     }
 </script>
 <script>
+    function proofDocument(id, st_approv, redirection) {
+        $('#mdlProofDocument').modal('show')
+
+        $('#proofDocumentForm').attr('action', '<?= site_url('reservation/approval/') ?>' + id + '?back=' + redirection + '&action=' + st_approv)
+    }
+
+    <?php if ($this->session->type === 'employee') { ?>
     let flaggedFamily = <?= $flagged_family ?>
 
     $(document).ready(function() {
@@ -768,6 +805,8 @@
 
         checkRadio()
     })
+
+<?php } ?>
 
     function showModalLast() {
         let trip = $('input[name=typetrip]:checked').val() === 'single' ? 'Sekali Jalan' : 'Pulang Pergi',
