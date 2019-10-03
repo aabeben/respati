@@ -466,6 +466,7 @@ class Reservation extends CI_Controller {
 			$data->document = $file_name;
 			$data->save();
 
+
 			$this->session->set_flashdata('state', 'stored');
 			redirect(site_url('reservation/reimbursement'));
 		}

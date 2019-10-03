@@ -342,7 +342,7 @@
                             </div>
                             
                             <div class="modal-body">
-                                <input type="hidden" id="rsvp_id" name="rsvp_id" class="form-control">
+                                <input type="hidden" id="rsvp_id_attachment" name="rsvp_id" class="form-control">
                                 
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -744,7 +744,7 @@
     function changeAttachment(rsvp_id, attachment, rsvp_name) {
         $('#mdlAttachment').modal('show')
 
-        $('#rsvp_id').val(rsvp_id)
+        $('#rsvp_id_attachment').val(rsvp_id)
         $('#rsvp_name_').html(rsvp_name)
         $('#rsvp_attachment').attr('src', attachment)
     }
