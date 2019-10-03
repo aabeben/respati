@@ -273,6 +273,7 @@ class Reservation extends CI_Controller {
 
 				$return  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 								->where('metode_pemesanan', 'R')
+								->where('nik', $this->session->identity)
 								->where('trip', 'double');
 
 
