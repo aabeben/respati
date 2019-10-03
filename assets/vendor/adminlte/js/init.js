@@ -393,7 +393,11 @@ $(function () {
         $('.modal:visible').each(centerModal);
     });
 
-    const anElement = new AutoNumeric('input.niw', 0);
-    const sds = new AutoNumeric('input.niw2', 0);
+    const anElement = new AutoNumeric('input.niw', {
+        decimalPlaces: 0
+    });
+    const sds = new AutoNumeric('input.niw2', {
+        decimalPlaces: 0
+    });
 
 })
