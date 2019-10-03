@@ -205,7 +205,7 @@
                                             <td><strong><?= $data->flightReturn->flight; ?></strong></td>
                                             <td><strong><?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>) - <?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>)</strong></td>
                                             <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_berangkat; ?></strong></td>
-                                            <td><strong><?= $data->kode_flight; ?></strong></td>
+                                            <td><strong><?= $data->kode_flight_pulang; ?></strong></td>
                                             <td><strong>Rp<?= $data->harga_pulang; ?></strong></td>
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
@@ -260,7 +260,7 @@
                                             <td><strong><?= $data->flightReturn->flight; ?></strong></td>
                                             <td><strong><?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>) - <?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>)</strong></td>
                                             <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_berangkat; ?></strong></td>
-                                            <td><strong><?= $data->kode_flight; ?></strong></td>
+                                            <td><strong><?= $data->kode_flight_pulang; ?></strong></td>
                                             <td><strong>Rp<?= $data->harga_pulang; ?></strong></td>
                                             <td>
                                                 <?php if ($data->document === null || $data->document === '') { ?>
