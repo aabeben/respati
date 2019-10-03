@@ -48,6 +48,7 @@
         function setTwoNumberDecimal(event) {
             this.value = parseFloat(this.value).toFixed(2);
         }
+        
         $(document).ready(function() {
             $.ajax({
                 url: "<?= site_url('reservation/serviceRsvpNotification') ?>",

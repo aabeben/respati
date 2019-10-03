@@ -363,7 +363,7 @@ $(function () {
     });
 
     $('.form-date').datepicker({
-        startDate:"-7d",
+        startDate:"+7d",
         autoclose: true,
         minDate:0
     })
