@@ -28,6 +28,7 @@ class Reservation extends CI_Controller {
 														->where('metode_pemesanan', 'H')
 														->where('nik', $this->session->identity)
 														->where('st_approv', 'false')
+														->whereNotNull('updated_at')
 														->get();
 
 				$data['return']  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
@@ -35,6 +36,7 @@ class Reservation extends CI_Controller {
 														->where('nik', $this->session->identity)
 														->where('trip', 'double')
 														->where('st_approv', 'false')
+														->whereNotNull('updated_at')
 														->get();
 
 				$this->load->view('components/layout', $data);
@@ -73,6 +75,7 @@ class Reservation extends CI_Controller {
 														->where('metode_pemesanan', 'H')
 														->where('nik', $this->session->identity)
 														->where('st_approv', '!=', 'false')
+														->whereNotNull('updated_at')
 														->get();
 
 				$data['return']  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
@@ -80,6 +83,7 @@ class Reservation extends CI_Controller {
 														->where('nik', $this->session->identity)
 														->where('trip', 'double')
 														->where('st_approv', '!=', 'false')
+														->whereNotNull('updated_at')
 														->get();
 
 				$this->load->view('components/layout', $data);
@@ -88,11 +92,13 @@ class Reservation extends CI_Controller {
 				$data['depart']  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 											->where('metode_pemesanan', 'H')
 											->where('trip', '!=', 'null')
+											->whereNotNull('updated_at')
 											->get();
 
 				$data['return']  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 											->where('metode_pemesanan', 'H')
 											->where('trip', 'double')
+											->whereNotNull('updated_at')
 											->get();
 
 				$this->load->view('components/layout', $data);
@@ -112,6 +118,7 @@ class Reservation extends CI_Controller {
 				$depart  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 											->where('metode_pemesanan', 'H')
 											->where('nik', $this->session->identity)
+											->whereNotNull('updated_at')
 											->where('trip', '!=', 'null');
 
 				
@@ -142,6 +149,7 @@ class Reservation extends CI_Controller {
 				$return  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 								->where('metode_pemesanan', 'H')
 								->where('nik', $this->session->identity)
+								->whereNotNull('updated_at')
 								->where('trip', 'double');
 
 
@@ -174,6 +182,7 @@ class Reservation extends CI_Controller {
 				$data['employee'] = PartyModel::where('type', 'employee')->get();
 				$depart  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 											->where('metode_pemesanan', 'H')
+											->whereNotNull('updated_at')
 											->where('trip', '!=', 'null');
 
 				
@@ -203,6 +212,7 @@ class Reservation extends CI_Controller {
 
 				$return  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 								->where('metode_pemesanan', 'H')
+								->whereNotNull('updated_at')
 								->where('trip', 'double');
 
 
@@ -244,6 +254,7 @@ class Reservation extends CI_Controller {
 				$depart  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 											->where('metode_pemesanan', 'R')
 											->where('nik', $this->session->identity)
+											->whereNotNull('updated_at')
 											->where('trip', '!=', 'null');
 
 				
@@ -274,6 +285,7 @@ class Reservation extends CI_Controller {
 				$return  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 								->where('metode_pemesanan', 'R')
 								->where('nik', $this->session->identity)
+								->whereNotNull('updated_at')
 								->where('trip', 'double');
 
 
@@ -305,6 +317,7 @@ class Reservation extends CI_Controller {
 				$data['employee'] = PartyModel::where('type', 'employee')->get();
 				$depart  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 											->where('metode_pemesanan', 'R')
+											->whereNotNull('updated_at')
 											->where('trip', '!=', 'null');
 
 				
@@ -334,6 +347,7 @@ class Reservation extends CI_Controller {
 
 				$return  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 								->where('metode_pemesanan', 'R')
+								->whereNotNull('updated_at')
 								->where('trip', 'double');
 
 
@@ -383,6 +397,7 @@ class Reservation extends CI_Controller {
 														->where('nik', $this->session->identity)
 														->where('metode_pemesanan', 'R')
 														->where('st_approv', 'false')
+														->whereNotNull('updated_at')
 														->get();
 
 				$data['return']  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
@@ -390,6 +405,7 @@ class Reservation extends CI_Controller {
 														->where('metode_pemesanan', 'R')
 														->where('trip', 'double')
 														->where('st_approv', 'false')
+														->whereNotNull('updated_at')
 														->get();
 
 				$this->load->view('components/layout', $data);
@@ -397,12 +413,14 @@ class Reservation extends CI_Controller {
 				$data['content'] 		='reservation/reimbursement/main'; 
 				$data['depart']  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 											->where('metode_pemesanan', 'R')
+											->whereNotNull('updated_at')
 											->where('trip', '!=', 'null')
 											->get();
 
 				$data['return']  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 											->where('metode_pemesanan', 'R')
 											->where('trip', 'double')
+											->whereNotNull('updated_at')
 											->get();
 
 				$this->load->view('components/layout', $data);
@@ -430,6 +448,7 @@ class Reservation extends CI_Controller {
 														->where('nik', $this->session->identity)
 														->where('metode_pemesanan', 'R')
 														->where('st_approv', '!=', 'false')
+														->whereNotNull('updated_at')
 														->get();
 
 				$data['return']  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
@@ -437,6 +456,7 @@ class Reservation extends CI_Controller {
 														->where('metode_pemesanan', 'R')
 														->where('trip', 'double')
 														->where('st_approv', '!=', 'false')
+														->whereNotNull('updated_at')
 														->get();
 
 				$this->load->view('components/layout', $data);
@@ -445,11 +465,13 @@ class Reservation extends CI_Controller {
 				$data['depart']  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 											->where('metode_pemesanan', 'R')
 											->where('trip', '!=', 'null')
+											->whereNotNull('updated_at')
 											->get();
 
 				$data['return']  = ReservationModel::with('flightDepart', 'flightReturn', 'routeFrom', 'routeTo')
 											->where('metode_pemesanan', 'R')
 											->where('trip', 'double')
+											->whereNotNull('updated_at')
 											->get();
 
 				$this->load->view('components/layout', $data);
