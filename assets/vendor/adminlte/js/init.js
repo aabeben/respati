@@ -365,6 +365,7 @@ $(function () {
     $('.form-date').datepicker({
         startDate:"+7d",
         autoclose: true,
+        format: 'dd-mm-yyyy',
         minDate:0
     })
     .on('changeDate', function(event) {
