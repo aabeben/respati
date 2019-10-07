@@ -470,6 +470,8 @@ class Reservation extends CI_Controller {
 
 			$this->session->set_flashdata('state', 'stored');
 			redirect(site_url('reservation/reimbursement'));
+		} else {
+			echo "Sorry, there was an error uploading your file.";
 		}
 	}
 

@@ -175,7 +175,7 @@
                                             <td><strong><?= $data->nama; ?></strong> <small>NIK: <strong><?= $data->nik ?></strong></small></td>
                                             <td><strong><?= $data->flightReturn->flight; ?></strong></td>
                                             <td><strong><?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>) - <?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>)</strong></td>
-                                            <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_berangkat; ?></strong></td>
+                                            <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_pulang; ?></strong></td>
                                             <td>
                                                 <?php if ($data->st_approv == 'false') { ?>
                                                     <span class="label label-primary">Menunggu Approval</span>
@@ -222,7 +222,7 @@
                                                 <td><strong><?= $data->nama; ?></strong> <small>NIK: <strong><?= $data->nik ?></strong></small></td>
                                                 <td><strong><?= $data->flightReturn->flight; ?></strong></td>
                                                 <td><strong><?= $data->routeTo->city; ?> (<?= $data->routeTo->id; ?>) - <?= $data->routeFrom->city; ?> (<?= $data->routeFrom->id; ?>)</strong></td>
-                                                <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_berangkat; ?></strong></td>
+                                                <td><strong><?= $data->tgl_pulang; ?>, <?= $data->waktu_pulang; ?></strong></td>
                                                 <td><strong><?= $data->kode_flight; ?></strong></td>
                                                 <td><strong>Rp<?= number_format($data->harga_pulang); ?></strong></td>
                                                 
