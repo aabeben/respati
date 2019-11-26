@@ -12,7 +12,10 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/vendor/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/vendor/adminlte/css/AdminLTE.css">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background: linear-gradient(
+      rgba(0, 0, 0, 0.95), 
+      rgba(0, 0, 0, 0.45)
+    ), url(<?= base_url() ?>assets/storage/image/bg-login.jpg); background-size: cover;">
 	<div class="login-box">
 		<div class="login-box-body">
 			<p class="login-box-msg">Masuk ke <strong>Respati 2.0</strong></p>

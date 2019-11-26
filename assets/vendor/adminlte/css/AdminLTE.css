@@ -1318,26 +1318,26 @@ a:focus {
   color: #1d9b95;
 }
 .form-group.has-warning label {
-  color: #f39c12;
+  color: rgb(50, 50, 50);
 }
 .form-group.has-warning .form-control,
 .form-group.has-warning .input-group-addon {
-  border-color: #f39c12;
+  border-color: rgb(50, 50, 50);
   box-shadow: none;
 }
 .form-group.has-warning .help-block {
-  color: #f39c12;
+  color: rgb(50, 50, 50);
 }
 .form-group.has-error label {
-  color: #dd4b39;
+  color: #9b0005;
 }
 .form-group.has-error .form-control,
 .form-group.has-error .input-group-addon {
-  border-color: #dd4b39;
+  border-color: #9b0005;
   box-shadow: none;
 }
 .form-group.has-error .help-block {
-  color: #dd4b39;
+  color: #9b0005;
 }
 /* Input group */
 .input-group .input-group-addon {
@@ -1480,7 +1480,7 @@ a:focus {
 }
 .progress-bar-yellow,
 .progress-bar-warning {
-  background-color: #f39c12;
+  background-color: rgb(50, 50, 50);
 }
 .progress-striped .progress-bar-yellow,
 .progress-striped .progress-bar-warning {
@@ -1490,7 +1490,7 @@ a:focus {
 }
 .progress-bar-red,
 .progress-bar-danger {
-  background-color: #dd4b39;
+  background-color: #9b0005;
 }
 .progress-striped .progress-bar-red,
 .progress-striped .progress-bar-danger {
@@ -1598,10 +1598,10 @@ a:focus {
   border-top-color: #00c0ef;
 }
 .box.box-danger {
-  border-top-color: #dd4b39;
+  border-top-color: #9b0005;
 }
 .box.box-warning {
-  border-top-color: #f39c12;
+  border-top-color: rgb(50, 50, 50);
 }
 .box.box-success {
   border-top-color: #1d9b95;
@@ -1677,24 +1677,24 @@ a:focus {
   color: #fff;
 }
 .box.box-solid.box-danger {
-  border: 1px solid #dd4b39;
+  border: 1px solid #9b0005;
 }
 .box.box-solid.box-danger > .box-header {
   color: #fff;
-  background: #dd4b39;
-  background-color: #dd4b39;
+  background: #9b0005;
+  background-color: #9b0005;
 }
 .box.box-solid.box-danger > .box-header a,
 .box.box-solid.box-danger > .box-header .btn {
   color: #fff;
 }
 .box.box-solid.box-warning {
-  border: 1px solid #f39c12;
+  border: 1px solid rgb(50, 50, 50);
 }
 .box.box-solid.box-warning > .box-header {
   color: #fff;
-  background: #f39c12;
-  background-color: #f39c12;
+  background: rgb(50, 50, 50);
+  background-color: rgb(50, 50, 50);
 }
 .box.box-solid.box-warning > .box-header a,
 .box.box-solid.box-warning > .box-header .btn {
@@ -1972,7 +1972,7 @@ a:focus {
 .todo-list > li .tools {
   display: none;
   float: right;
-  color: #dd4b39;
+  color: #9b0005;
 }
 .todo-list > li .tools > .fa,
 .todo-list > li .tools > .glyphicon,
@@ -1994,10 +1994,10 @@ a:focus {
   background: #d2d6de !important;
 }
 .todo-list .danger {
-  border-left-color: #dd4b39;
+  border-left-color: #9b0005;
 }
 .todo-list .warning {
-  border-left-color: #f39c12;
+  border-left-color: rgb(50, 50, 50);
 }
 .todo-list .info {
   border-left-color: #00c0ef;
@@ -2038,7 +2038,7 @@ a:focus {
   border: 2px solid #1d9b95;
 }
 .chat .item > .offline {
-  border: 2px solid #dd4b39;
+  border: 2px solid #9b0005;
 }
 .chat .item > .message {
   margin-left: 55px;
@@ -2343,8 +2343,8 @@ a:focus {
 }
 .btn-danger {
   color: #fff !important;
-  background-color: #dd4b39;
-  border-color: #dd4b39;
+  background-color: #9b0005;
+  border-color: #9b0005;
 }
 .btn-danger:hover,
 .btn-danger:active,
@@ -2353,8 +2353,8 @@ a:focus {
 }
 .btn-warning {
   color: white !important;
-  background-color: #f39c12;
-  border-color: #f39c12;
+  background-color: rgb(50, 50, 50);
+  border-color: rgb(50, 50, 50);
 }
 .btn-warning:hover,
 .btn-warning:active,
@@ -2651,10 +2651,10 @@ a:focus {
   border-top-color: #00c0ef;
 }
 .nav-tabs-custom.tab-danger > .nav-tabs > li.active {
-  border-top-color: #dd4b39;
+  border-top-color: #9b0005;
 }
 .nav-tabs-custom.tab-warning > .nav-tabs > li.active {
-  border-top-color: #f39c12;
+  border-top-color: rgb(50, 50, 50);
 }
 .nav-tabs-custom.tab-success > .nav-tabs > li.active {
   border-top-color: #1d9b95;
@@ -2952,13 +2952,13 @@ table.text-center th {
   color: #999;
 }
 .direct-chat-danger .right > .direct-chat-text {
-  background: #dd4b39;
-  border-color: #dd4b39;
+  background: #9b0005;
+  border-color: #9b0005;
   color: #fff;
 }
 .direct-chat-danger .right > .direct-chat-text:after,
 .direct-chat-danger .right > .direct-chat-text:before {
-  border-left-color: #dd4b39;
+  border-left-color: #9b0005;
 }
 .direct-chat-primary .right > .direct-chat-text {
   background: #B40D1A;
@@ -2970,13 +2970,13 @@ table.text-center th {
   border-left-color: #B40D1A;
 }
 .direct-chat-warning .right > .direct-chat-text {
-  background: #f39c12;
-  border-color: #f39c12;
+  background: rgb(50, 50, 50);
+  border-color: rgb(50, 50, 50);
   color: #fff;
 }
 .direct-chat-warning .right > .direct-chat-text:after,
 .direct-chat-warning .right > .direct-chat-text:before {
-  border-left-color: #f39c12;
+  border-left-color: rgb(50, 50, 50);
 }
 .direct-chat-info .right > .direct-chat-text {
   background: #00c0ef;
@@ -4004,7 +4004,7 @@ fieldset[disabled] .btn-github.focus {
 }
 .btn-google {
   color: #fff;
-  background-color: #dd4b39;
+  background-color: #9b0005;
   border-color: rgba(0, 0, 0, 0.2);
 }
 .btn-google:focus,
@@ -4052,11 +4052,11 @@ fieldset[disabled] .btn-google:focus,
 .btn-google.disabled.focus,
 .btn-google[disabled].focus,
 fieldset[disabled] .btn-google.focus {
-  background-color: #dd4b39;
+  background-color: #9b0005;
   border-color: rgba(0, 0, 0, 0.2);
 }
 .btn-google .badge {
-  color: #dd4b39;
+  color: #9b0005;
   background-color: #fff;
 }
 .btn-instagram {
@@ -5074,14 +5074,14 @@ fieldset[disabled] .btn-yahoo.focus {
 .alert-error,
 .label-danger,
 .modal-danger .modal-body {
-  background-color: #dd4b39 !important;
+  background-color: #9b0005 !important;
 }
 .bg-yellow,
 .callout.callout-warning,
 .alert-warning,
 .label-warning,
 .modal-warning .modal-body {
-  background-color: #f39c12 !important;
+  background-color: rgb(50, 50, 50) !important;
 }
 .bg-aqua,
 .callout.callout-info,
@@ -5193,10 +5193,10 @@ fieldset[disabled] .btn-yahoo.focus {
   filter: alpha(opacity=65);
 }
 .text-red {
-  color: #dd4b39 !important;
+  color: #9b0005 !important;
 }
 .text-yellow {
-  color: #f39c12 !important;
+  color: rgb(50, 50, 50) !important;
 }
 .text-aqua {
   color: #00c0ef !important;
@@ -5338,12 +5338,12 @@ fieldset[disabled] .btn-yahoo.focus {
   color: #fff;
 }
 .bg-yellow-gradient {
-  background: #f39c12 !important;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f39c12), color-stop(1, #f7bc60)) !important;
-  background: -ms-linear-gradient(bottom, #f39c12, #f7bc60) !important;
-  background: -moz-linear-gradient(center bottom, #f39c12 0%, #f7bc60 100%) !important;
-  background: -o-linear-gradient(#f7bc60, #f39c12) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7bc60', endColorstr='#f39c12', GradientType=0) !important;
+  background: rgb(50, 50, 50) !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(50, 50, 50)), color-stop(1, #f7bc60)) !important;
+  background: -ms-linear-gradient(bottom, rgb(50, 50, 50), #f7bc60) !important;
+  background: -moz-linear-gradient(center bottom, rgb(50, 50, 50) 0%, #f7bc60 100%) !important;
+  background: -o-linear-gradient(#f7bc60, rgb(50, 50, 50)) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7bc60', endColorstr='rgb(50, 50, 50)', GradientType=0) !important;
   color: #fff;
 }
 .bg-purple-gradient {
@@ -5365,12 +5365,12 @@ fieldset[disabled] .btn-yahoo.focus {
   color: #fff;
 }
 .bg-red-gradient {
-  background: #dd4b39 !important;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #dd4b39), color-stop(1, #e47365)) !important;
-  background: -ms-linear-gradient(bottom, #dd4b39, #e47365) !important;
-  background: -moz-linear-gradient(center bottom, #dd4b39 0%, #e47365 100%) !important;
-  background: -o-linear-gradient(#e47365, #dd4b39) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e47365', endColorstr='#dd4b39', GradientType=0) !important;
+  background: #9b0005 !important;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #9b0005), color-stop(1, #e47365)) !important;
+  background: -ms-linear-gradient(bottom, #9b0005, #e47365) !important;
+  background: -moz-linear-gradient(center bottom, #9b0005 0%, #e47365 100%) !important;
+  background: -o-linear-gradient(#e47365, #9b0005) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e47365', endColorstr='#9b0005', GradientType=0) !important;
   color: #fff;
 }
 .bg-black-gradient {
@@ -5563,7 +5563,7 @@ hr {
   background: #1d9b95;
 }
 #yellow .slider-selection {
-  background: #f39c12;
+  background: rgb(50, 50, 50);
 }
 #aqua .slider-selection {
   background: #00c0ef;
@@ -5759,7 +5759,7 @@ table tr td small {
 button.dt-button {
   color: white !important;
   border: none !important;
-  background: #f39c12 !important;
+  background: rgb(50, 50, 50) !important;
   padding: 10px 25px !important;
 }
 .notifications-menu a i.inh {

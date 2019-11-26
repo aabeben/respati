@@ -3,7 +3,7 @@
  * ---------
  */
 .skin-red-light .main-header .navbar {
-  background-color: #ffffff;
+  background-color: #9b0005;
   box-shadow: 0 10px 20px rgba(40, 40, 40, .10);
 }
 .skin-red-light .main-header .navbar .nav > li > a {
@@ -20,7 +20,7 @@
   color: #f6f6f6;
 }
 .skin-red-light .main-header .navbar .sidebar-toggle {
-  color: #B40D1A !important;
+  color: white !important;
 }
 .skin-red-light .main-header .navbar .sidebar-toggle:hover {
   color: #f6f6f6;
@@ -154,7 +154,7 @@
 }
 
 .skin-red-light .main-header .navbar-custom-menu .user-menu {
-  background-color: #f39c12;
+  background-color: rgb(50, 50, 50, 1.00);
 }
 
 .skin-red-light .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
